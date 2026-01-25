@@ -22,7 +22,7 @@ function App() {
           count is {count}
         </button>
         <p>
-          bindik bi alamete
+          Automated OIDC deployment workflow test
         </p>
       </div>
       <p className="read-the-docs">
