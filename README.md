@@ -1,16 +1,71 @@
-# React + Vite
+# AWS Portfolio – Talha
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio built with React + Vite, deployed on AWS using S3 and CloudFront, and shipped through an automated GitHub Actions pipeline.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite 7 for a fast developer and runtime experience
+- Static hosting on S3 with global delivery via CloudFront
+- CI/CD with GitHub Actions and OIDC-based AWS authentication
+- Automated CloudFront cache invalidation on every deployment
 
-## React Compiler
+## Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `vite build` generates the static `dist/` output.
+- The `dist/` folder is synced to the S3 bucket `portfolio-website-talha-2026`.
+- CloudFront serves the site globally from the S3 origin.
+- GitHub Actions builds and deploys on every push to `main`.
 
-## Expanding the ESLint configuration
+## CI/CD Pipeline
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Workflow: `github/workflows/deploy.yml`
+
+Steps:
+1. Checkout code
+2. Setup Node.js 20
+3. Install dependencies and build
+4. Assume AWS role via OIDC
+5. Sync `dist/` to S3
+6. Invalidate CloudFront cache
+
+## Getting Started
+
+Prerequisites:
+- Node.js 20+
+- npm 9+
+
+Install dependencies:
+```
+npm install
+```
+
+Start the dev server:
+```
+npm run dev
+```
+
+Production build:
+```
+npm run build
+```
+
+Preview the production build:
+```
+npm run preview
+```
+
+## Required GitHub Secrets
+
+- `AWS_ROLE_ARN` – IAM role for OIDC-based deployment
+- `CLOUDFRONT_DISTRIBUTION_ID` – CloudFront distribution to invalidate
+
+## Project Structure
+
+- `src/` – React application source
+- `github/workflows/deploy.yml` – CI/CD pipeline
+- `dist/` – Vite production build output (generated)
+
+## Notes
+
+- AWS region is set to `eu-north-1` in the workflow.
+- Update the S3 bucket name in the workflow if deploying to a different bucket.
