@@ -1,42 +1,48 @@
 name: Deploy Portfolio
+
 on:
   push:
-    branches: [ main ] # Runs every time you push to the main branch
+    branches:
+      - main
 
 permissions:
-  id-token: write # Required for OIDC authentication
-  contents: read  # Required to checkout your code
+  id-token: write
+  contents: read
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # Pulls your code into the runner
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Matches modern Vite/React requirements
+          node-version: '22'
+          cache: 'pnpm'
 
-      - name: Install & Build
-        run: |
-          npm install
-          npm run build
-          # Creates the 'dist' folder with your production site
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Project
+        run: pnpm run build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }} # Uses your secret ARN
-          aws-region: eu-north-1 # Your Stockholm region
+          role-to-assume: arn:aws:iam::977099044566:role/GitHubAction-AssumeRole-Portfolio
+          aws-region: eu-north-1
 
       - name: Sync to S3
         run: |
-          aws s3 sync dist/ s3://portfolio-website-talha-2026 --delete 
-          # Syncs 'dist' folder to S3 and deletes old files
+          aws s3 sync dist/ s3://portfolio-talha-bucket --delete
 
       - name: Invalidate CloudFront Cache
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
-          # Clears global cache so changes show up instantly
+          aws cloudfront create-invalidation --distribution-id E3J1705D3D106V --paths "/*"
