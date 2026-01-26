@@ -6,8 +6,8 @@ on:
       - main
 
 permissions:
-  id-token: write
-  contents: read
+  id-token: write # Required for OIDC authentication
+  contents: read  # Required to checkout code
 
 jobs:
   build-and-deploy:
@@ -36,13 +36,15 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::977099044566:role/GitHubAction-AssumeRole-Portfolio
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}  # Uses working secret
           aws-region: eu-north-1
 
       - name: Sync to S3
         run: |
-          aws s3 sync dist/ s3://portfolio-talha-bucket --delete
+          # Your specific bucket name
+          aws s3 sync dist/ s3://portfolio-website-talha-2026 --delete
 
       - name: Invalidate CloudFront Cache
         run: |
-          aws cloudfront create-invalidation --distribution-id E3J1705D3D106V --paths "/*"
+          # RESTORED: Uses your working secret
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
