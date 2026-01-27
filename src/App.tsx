@@ -30,7 +30,8 @@ function App() {
 
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f8fafc');
+      const themeColor = getComputedStyle(root).getPropertyValue('--color-bg').trim();
+      metaTheme.setAttribute('content', themeColor || (theme === 'dark' ? '#0a0a0a' : '#f8fafc'));
     }
   }, [theme]);
 
