@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaGlobe } from 'react-icons/fa';
 
 const Navbar = () => {
     return (
@@ -17,11 +16,21 @@ const Navbar = () => {
 
             {/* Social Links */}
             <div className="flex gap-4 text-white/80">
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors text-xl">
-                    <FaGithub />
+                <a
+                    href="https://TalhaKarakoyunlu.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-blue-400 transition-colors text-xl"
+                    aria-label="Portfolio website"
+                >
+                    <FaGlobe />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors text-xl">
-                    <FaLinkedin />
+                <a
+                    href="mailto:Karakoyunlutalha34@gmail.com"
+                    className="hover:text-blue-400 transition-colors text-xl"
+                    aria-label="Email"
+                >
+                    <FaEnvelope />
                 </a>
             </div>
         </motion.nav>
