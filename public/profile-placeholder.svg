@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#111827"/>
+  <rect x="32" y="32" width="448" height="448" rx="24" fill="#1f2937" stroke="#334155" stroke-width="2"/>
+  <circle cx="256" cy="210" r="84" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+  <rect x="128" y="320" width="256" height="120" rx="28" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+  <text x="256" y="478" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#94a3b8">
+    Profile placeholder
+  </text>
+</svg>
