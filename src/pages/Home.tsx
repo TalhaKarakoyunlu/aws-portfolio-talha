@@ -45,7 +45,7 @@ const Home = () => {
                                 download
                                 className="px-6 py-3 border border-blue-500 text-blue-400 rounded hover:bg-blue-500/10 transition-colors"
                             >
-                                Download resume (placeholder)
+                                Download resume
                             </a>
                             <a
                                 href="#contact"
@@ -105,7 +105,7 @@ const Home = () => {
             <section id="projects" className="max-w-6xl mx-auto mt-16 scroll-mt-28">
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-semibold text-white">Projects</h2>
-                    <span className="text-sm text-zinc-400">Images and links are placeholders</span>
+                    <span className="text-sm text-zinc-400">Images are placeholders</span>
                 </div>
                 <div className="grid gap-6 md:grid-cols-3">
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -119,8 +119,14 @@ const Home = () => {
                             Lightweight mobile photo editor with smooth, mobile-first UI.
                         </p>
                         <div className="mt-4 flex gap-3 text-sm">
-                            <a href="#" className="text-blue-400 hover:text-blue-300">Case study</a>
-                            <a href="#" className="text-white/80 hover:text-white">Live demo</a>
+                            <a
+                                href="https://github.com/TalhaKarakoyunlu/Pixie"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-400 hover:text-blue-300"
+                            >
+                                GitHub
+                            </a>
                         </div>
                     </div>
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -134,8 +140,14 @@ const Home = () => {
                             Web app for music browsing and playlist management.
                         </p>
                         <div className="mt-4 flex gap-3 text-sm">
-                            <a href="#" className="text-blue-400 hover:text-blue-300">Case study</a>
-                            <a href="#" className="text-white/80 hover:text-white">Live demo</a>
+                            <a
+                                href="https://github.com/TalhaKarakoyunlu/Music-App"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-400 hover:text-blue-300"
+                            >
+                                GitHub
+                            </a>
                         </div>
                     </div>
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -149,8 +161,14 @@ const Home = () => {
                             Real-time messaging with AES-256 encrypted communication.
                         </p>
                         <div className="mt-4 flex gap-3 text-sm">
-                            <a href="#" className="text-blue-400 hover:text-blue-300">Case study</a>
-                            <a href="#" className="text-white/80 hover:text-white">Live demo</a>
+                            <a
+                                href="https://github.com/TalhaKarakoyunlu/Chat-App"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-400 hover:text-blue-300"
+                            >
+                                GitHub
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -187,8 +205,8 @@ const Home = () => {
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
                     <h2 className="text-2xl font-semibold text-white">Let us build something reliable</h2>
                     <p className="text-zinc-300 mt-3">
-                        Reach me at <span className="text-white">karakoyunlutalha34@gmail.com</span> or
-                        explore the placeholders for future case studies and visuals.
+                        Reach me at <span className="text-white">karakoyunlutalha34@gmail.com</span> and I
+                        will respond as soon as possible.
                     </p>
                     <div className="mt-6 flex flex-wrap justify-center gap-4">
                         <a
@@ -202,7 +220,7 @@ const Home = () => {
                             download
                             className="px-6 py-3 border border-white/20 text-white rounded hover:bg-white/10 transition-colors"
                         >
-                            Resume download (placeholder)
+                            Download resume
                         </a>
                     </div>
                 </div>
