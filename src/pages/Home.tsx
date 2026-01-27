@@ -1,30 +1,44 @@
 import { motion } from 'framer-motion';
 
+const Motion = motion;
+
+const metrics = [
+    { label: 'Internships', value: '2' },
+    { label: 'Years coding', value: '4+' },
+    { label: 'Projects shipped', value: '10+' },
+];
+
+const projectStack = [
+    { name: 'Pixie', stack: 'Flutter • Dart • Mobile' },
+    { name: 'Music App', stack: 'EJS • Spotify API • JS' },
+    { name: 'Chat App', stack: 'Flutter • MySQL • AES-256' },
+];
+
 const Home = () => {
     return (
         <main id="top" className="min-h-screen px-4 pt-28 pb-24">
             <section id="hero" className="max-w-6xl mx-auto scroll-mt-28">
                 <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr] items-center">
                     <div>
-                        <motion.h2
+                        <Motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                             className="text-blue-400 font-mono text-lg mb-4"
                         >
                             Hi, I am Talha Bahadir Karakoyunlu
-                        </motion.h2>
+                        </Motion.h2>
 
-                        <motion.h1
+                        <Motion.h1
                             initial={{ opacity: 0, scale: 0.96 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.6 }}
                             className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight"
                         >
                             Computer Engineer building reliable mobile and web systems.
-                        </motion.h1>
+                        </Motion.h1>
 
-                        <motion.p
+                        <Motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.9 }}
@@ -32,9 +46,9 @@ const Home = () => {
                         >
                             I build full-stack solutions with Flutter, ASP.NET MVC, REST APIs, and SQL
                             Server. I focus on clarity, maintainability, and real-world constraints.
-                        </motion.p>
+                        </Motion.p>
 
-                        <motion.div
+                        <Motion.div
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1.1 }}
@@ -53,7 +67,7 @@ const Home = () => {
                             >
                                 Contact me
                             </a>
-                        </motion.div>
+                        </Motion.div>
                     </div>
 
                     <div className="flex justify-center">
@@ -78,6 +92,20 @@ const Home = () => {
                     with SQL Server. I enjoy projects that demand reliability, solid data models, and clean
                     user flows.
                 </p>
+            </section>
+
+            <section id="impact" className="max-w-5xl mx-auto mt-12 scroll-mt-28">
+                <div className="grid gap-4 sm:grid-cols-3">
+                    {metrics.map((metric) => (
+                        <div
+                            key={metric.label}
+                            className="rounded-xl border border-white/10 bg-white/5 p-5 text-center"
+                        >
+                            <div className="text-2xl font-semibold text-white">{metric.value}</div>
+                            <div className="text-sm text-zinc-400 mt-1">{metric.label}</div>
+                        </div>
+                    ))}
+                </div>
             </section>
 
             <section id="experience" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
@@ -115,6 +143,7 @@ const Home = () => {
                             className="w-full h-40 object-cover rounded-lg"
                         />
                         <h3 className="text-white font-semibold mt-4">Pixie (Flutter)</h3>
+                        <p className="text-xs text-blue-200/80 mt-1">{projectStack[0].stack}</p>
                         <p className="text-zinc-300 text-sm mt-2">
                             Lightweight mobile photo editor with smooth, mobile-first UI.
                         </p>
@@ -136,6 +165,7 @@ const Home = () => {
                             className="w-full h-40 object-cover rounded-lg"
                         />
                         <h3 className="text-white font-semibold mt-4">Music App (Spotify API)</h3>
+                        <p className="text-xs text-blue-200/80 mt-1">{projectStack[1].stack}</p>
                         <p className="text-zinc-300 text-sm mt-2">
                             Web app for music browsing and playlist management.
                         </p>
@@ -157,6 +187,7 @@ const Home = () => {
                             className="w-full h-40 object-cover rounded-lg"
                         />
                         <h3 className="text-white font-semibold mt-4">Chat App (Flutter + MySQL)</h3>
+                        <p className="text-xs text-blue-200/80 mt-1">{projectStack[2].stack}</p>
                         <p className="text-zinc-300 text-sm mt-2">
                             Real-time messaging with AES-256 encrypted communication.
                         </p>
@@ -198,6 +229,34 @@ const Home = () => {
                             {skill}
                         </span>
                     ))}
+                </div>
+            </section>
+
+            <section id="education" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
+                <h2 className="text-2xl font-semibold text-white mb-6">Education</h2>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+                    <h3 className="text-white font-semibold">Abdullah Gül University</h3>
+                    <p className="text-zinc-300 text-sm mt-2">
+                        B.S. Computer Engineering — 09/2021 to 08/2025 · CGPA 3.19 / 4.00
+                    </p>
+                </div>
+            </section>
+
+            <section id="certifications" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
+                <h2 className="text-2xl font-semibold text-white mb-6">Certifications</h2>
+                <div className="grid gap-4 md:grid-cols-2">
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+                        <h3 className="text-white font-semibold">AWS Certification</h3>
+                        <p className="text-zinc-300 text-sm mt-2">
+                            Placeholder for badge and verification link.
+                        </p>
+                    </div>
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+                        <h3 className="text-white font-semibold">Additional Certification</h3>
+                        <p className="text-zinc-300 text-sm mt-2">
+                            Placeholder for badge and verification link.
+                        </p>
+                    </div>
                 </div>
             </section>
 
