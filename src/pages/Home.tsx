@@ -1,4 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { getFeaturedProject } from '../data/projects';
 
 const Motion = motion;
 
@@ -16,12 +18,14 @@ const projectStack = [
 
 const Home = () => {
     const shouldReduceMotion = useReducedMotion();
+    const featuredProject = getFeaturedProject();
     const fadeUp = (delay = 0) => ({
         initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
         animate: { opacity: 1, y: 0 },
         transition: { delay, duration: 0.6 },
     });
     const cardHover = shouldReduceMotion ? undefined : { y: -6 };
+    const imageHover = shouldReduceMotion ? undefined : { scale: 1.02 };
 
     return (
         <main id="top" className="min-h-screen px-4 pt-28 pb-24">
@@ -46,8 +50,8 @@ const Home = () => {
                             {...fadeUp(0.9)}
                             className="text-app-muted max-w-2xl text-base md:text-lg leading-relaxed"
                         >
-                            I build full-stack solutions with Flutter, ASP.NET MVC, REST APIs, and SQL
-                            Server. I focus on clarity, maintainability, and real-world constraints.
+                            Computer engineer building reliable mobile, web, and computer-vision systems
+                            for real-world operations.
                         </Motion.p>
 
                         <Motion.div
@@ -233,6 +237,80 @@ const Home = () => {
                 </div>
             </section>
 
+            <section id="featured" className="max-w-6xl mx-auto mt-16 scroll-mt-28">
+                <div className="flex items-center justify-between mb-6">
+                    <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text">
+                        Featured case study
+                    </Motion.h2>
+                    <span className="text-sm text-app-muted">Deep dive</span>
+                </div>
+                {featuredProject ? (
+                    <Motion.div
+                        whileHover={cardHover}
+                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                        className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
+                    >
+                        <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] items-center">
+                            <div>
+                                <h3 className="text-xl font-semibold text-app-text">
+                                    {featuredProject.title}
+                                </h3>
+                                <p className="text-sm text-app-muted mt-2">
+                                    {featuredProject.summary}
+                                </p>
+                                <div className="flex flex-wrap gap-2 text-xs text-app-text mt-4">
+                                    {featuredProject.stack.map((item) => (
+                                        <span
+                                            key={item}
+                                            className="px-3 py-1 rounded-full border border-app-border bg-app-bg/60"
+                                        >
+                                            {item}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div className="mt-5 flex flex-wrap gap-3 text-sm">
+                                    <Link
+                                        to={`/projects/${featuredProject.slug}`}
+                                        className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
+                                    >
+                                        View case study
+                                    </Link>
+                                    <a
+                                        href="#contact"
+                                        className="px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
+                                    >
+                                        Contact me
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                {featuredProject.gallery.slice(0, 2).map((image) => (
+                                    <Motion.div
+                                        key={image.src}
+                                        whileHover={cardHover}
+                                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                                        className="rounded-xl border border-app-border bg-app-bg/60 p-3"
+                                    >
+                                        <Motion.img
+                                            src={image.src}
+                                            alt={image.alt}
+                                            className="w-full h-32 object-cover rounded-lg"
+                                            whileHover={imageHover}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                        <p className="text-xs text-app-muted mt-2">{image.caption}</p>
+                                    </Motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    </Motion.div>
+                ) : (
+                    <div className="rounded-2xl border border-app-border bg-app-surface/60 p-6 text-app-muted">
+                        Featured case study will appear here soon.
+                    </div>
+                )}
+            </section>
+
             <section id="skills" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
                 <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text mb-6">
                     Skills
@@ -305,6 +383,35 @@ const Home = () => {
                     </div>
                 </Motion.div>
             </section>
+
+            <footer className="max-w-6xl mx-auto mt-16 border-t border-app-border pt-8 text-sm text-app-muted">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                    <span>Quick links</span>
+                    <div className="flex flex-wrap gap-4">
+                        <a
+                            href="mailto:karakoyunlutalha34@gmail.com"
+                            className="hover:text-app-text transition-colors"
+                        >
+                            Email
+                        </a>
+                        <a
+                            href="/resume.pdf"
+                            download
+                            className="hover:text-app-text transition-colors"
+                        >
+                            Resume
+                        </a>
+                        <a
+                            href="https://github.com/TalhaKarakoyunlu"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="hover:text-app-text transition-colors"
+                        >
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </main>
     );
 };

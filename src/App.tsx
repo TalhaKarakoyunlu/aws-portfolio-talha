@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import ProjectDetail from './pages/ProjectDetail';
 
 type ThemeMode = 'light' | 'dark';
 
@@ -18,6 +20,24 @@ const getPreferredTheme = (): ThemeMode => {
 
   const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
   return prefersDark ? 'dark' : 'light';
+};
+
+const ScrollToHash = () => {
+  const { hash, pathname } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const target = document.getElementById(hash.replace('#', ''));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [hash, pathname]);
+
+  return null;
 };
 
 function App() {
@@ -40,16 +60,22 @@ function App() {
   };
 
   return (
-    <div className="bg-app-bg min-h-screen text-app-text overflow-x-hidden">
-      <a
-        href="#top"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-app-surface focus:px-4 focus:py-2 focus:text-app-text focus:shadow-lg"
-      >
-        Skip to content
-      </a>
-      <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <div className="bg-app-bg min-h-screen text-app-text overflow-x-hidden">
+        <a
+          href="/#top"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-app-surface focus:px-4 focus:py-2 focus:text-app-text focus:shadow-lg"
+        >
+          Skip to content
+        </a>
+        <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
+        <ScrollToHash />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
