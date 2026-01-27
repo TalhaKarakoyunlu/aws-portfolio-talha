@@ -36,7 +36,7 @@ const Home = () => {
                             {...fadeUp(0.4)}
                             className="text-app-accent font-mono text-lg mb-4"
                         >
-                            Hi, I am Talha Bahadir Karakoyunlu
+                            Hi, I am Talha Bahadır Karakoyunlu
                         </Motion.h2>
 
                         <Motion.h1
@@ -45,14 +45,6 @@ const Home = () => {
                         >
                             Computer Engineer building reliable mobile and web systems.
                         </Motion.h1>
-
-                        <Motion.p
-                            {...fadeUp(0.9)}
-                            className="text-app-muted max-w-2xl text-base md:text-lg leading-relaxed"
-                        >
-                            Computer engineer building reliable mobile, web, and computer-vision systems
-                            for real-world operations.
-                        </Motion.p>
 
                         <Motion.div
                             {...fadeUp(1.1)}
@@ -172,6 +164,12 @@ const Home = () => {
                             Lightweight mobile photo editor with smooth, mobile-first UI.
                         </p>
                         <div className="mt-4 flex gap-3 text-sm">
+                            <Link
+                                to="/projects/pixie"
+                                className="text-app-accent hover:text-app-accent/80"
+                            >
+                                View details
+                            </Link>
                             <a
                                 href="https://github.com/TalhaKarakoyunlu/Pixie"
                                 target="_blank"
@@ -198,6 +196,12 @@ const Home = () => {
                             Web app for music browsing and playlist management.
                         </p>
                         <div className="mt-4 flex gap-3 text-sm">
+                            <Link
+                                to="/projects/music-app"
+                                className="text-app-accent hover:text-app-accent/80"
+                            >
+                                View details
+                            </Link>
                             <a
                                 href="https://github.com/TalhaKarakoyunlu/Music-App"
                                 target="_blank"
@@ -224,6 +228,12 @@ const Home = () => {
                             Real-time messaging with AES-256 encrypted communication.
                         </p>
                         <div className="mt-4 flex gap-3 text-sm">
+                            <Link
+                                to="/projects/chat-app"
+                                className="text-app-accent hover:text-app-accent/80"
+                            >
+                                View details
+                            </Link>
                             <a
                                 href="https://github.com/TalhaKarakoyunlu/Chat-App"
                                 target="_blank"

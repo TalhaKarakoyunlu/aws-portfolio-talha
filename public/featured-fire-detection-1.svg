@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Dataset samples placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1f2937" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <rect x="80" y="80" width="1040" height="640" rx="28" fill="#0b1220" stroke="#334155" stroke-width="2" />
+  <g fill="#e5e7eb" font-family="Inter, Arial, sans-serif">
+    <text x="160" y="200" font-size="36" font-weight="600">Fire &amp; Smoke Detection</text>
+    <text x="160" y="260" font-size="22" fill="#94a3b8">Dataset samples placeholder</text>
+    <text x="160" y="320" font-size="18" fill="#94a3b8">Roboflow curated frames " Augmented class balance</text>
+  </g>
+  <g fill="#0f172a" stroke="#334155" stroke-width="2">
+    <rect x="160" y="380" width="240" height="160" rx="16" />
+    <rect x="440" y="380" width="240" height="160" rx="16" />
+    <rect x="720" y="380" width="240" height="160" rx="16" />
+  </g>
+  <g fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="16">
+    <text x="190" y="470">Sample A</text>
+    <text x="470" y="470">Sample B</text>
+    <text x="750" y="470">Sample C</text>
+  </g>
+</svg>

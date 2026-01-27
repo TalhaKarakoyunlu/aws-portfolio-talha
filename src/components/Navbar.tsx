@@ -18,26 +18,20 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
             className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex flex-wrap gap-4 justify-between items-center backdrop-blur-md bg-app-bg/70 border-b border-app-border"
         >
             <Link
-                to="/#top"
+                to="/"
                 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
             >
                 Talha.dev
             </Link>
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-app-muted">
-                <Link to="/#about" className="hover:text-app-text transition-colors">
+                <Link to="/about" className="hover:text-app-text transition-colors">
                     About
                 </Link>
-                <Link to="/#experience" className="hover:text-app-text transition-colors">
-                    Experience
-                </Link>
-                <Link to="/#projects" className="hover:text-app-text transition-colors">
+                <Link to="/projects" className="hover:text-app-text transition-colors">
                     Projects
                 </Link>
-                <Link to="/#skills" className="hover:text-app-text transition-colors">
-                    Skills
-                </Link>
-                <Link to="/#contact" className="hover:text-app-text transition-colors">
+                <Link to="/contact" className="hover:text-app-text transition-colors">
                     Contact
                 </Link>
             </div>

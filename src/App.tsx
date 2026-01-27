@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import FireDetection from './pages/FireDetection';
 import Home from './pages/Home';
 import ProjectDetail from './pages/ProjectDetail';
+import Projects from './pages/Projects';
 
 type ThemeMode = 'light' | 'dark';
 
@@ -63,7 +67,7 @@ function App() {
     <BrowserRouter>
       <div className="bg-app-bg min-h-screen text-app-text overflow-x-hidden">
         <a
-          href="/#top"
+          href="#top"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-app-surface focus:px-4 focus:py-2 focus:text-app-text focus:shadow-lg"
         >
           Skip to content
@@ -72,7 +76,11 @@ function App() {
         <ScrollToHash />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/fire-detection" element={<FireDetection />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </BrowserRouter>
