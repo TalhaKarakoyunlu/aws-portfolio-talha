@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaGlobe, FaGithub, FaLinkedin } from 'react-icons/fa';
 
+const MotionNav = motion.nav;
+
 const Navbar = () => {
     return (
-        <motion.nav
+        <MotionNav
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -60,7 +62,7 @@ const Navbar = () => {
                     <FaEnvelope />
                 </a>
             </div>
-        </motion.nav>
+        </MotionNav>
     );
 };
 
