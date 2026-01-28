@@ -10,12 +10,6 @@ const metrics = [
     { label: 'Projects shipped', value: '10+' },
 ];
 
-const projectStack = [
-    { name: 'Pixie', stack: 'Flutter • Dart • Mobile' },
-    { name: 'Music App', stack: 'EJS • Spotify API • JS' },
-    { name: 'Chat App', stack: 'Flutter • MySQL • AES-256' },
-];
-
 const Home = () => {
     const shouldReduceMotion = useReducedMotion();
     const featuredProject = getFeaturedProject();
@@ -43,7 +37,7 @@ const Home = () => {
                             {...fadeUp(0.6)}
                             className="text-5xl md:text-7xl font-bold text-app-text mb-6 tracking-tight"
                         >
-                            Computer Engineer building reliable mobile and web systems.
+                            Computer Engineer building reliable systems.
                         </Motion.h1>
 
                         <Motion.div
@@ -84,12 +78,17 @@ const Home = () => {
                     About
                 </Motion.h2>
                 <p className="text-app-muted leading-relaxed">
-                    Computer Engineering graduate with experience across mobile and web application
-                    development. I have shipped Flutter apps for courier and restaurant operations, built
-                    admin panels with real-time tracking, and implemented backend features in ASP.NET MVC
-                    with SQL Server. I enjoy projects that demand reliability, solid data models, and clean
-                    user flows.
+                    Recent Computer Engineering graduate focused on reliable web and mobile systems. I ship
+                    product-ready experiences with clean data models and steady user flows.
                 </p>
+                <div className="mt-5">
+                    <Link
+                        to="/about"
+                        className="inline-flex items-center justify-center px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors text-sm"
+                    >
+                        Read more
+                    </Link>
+                </div>
             </section>
 
             <section id="impact" className="max-w-5xl mx-auto mt-12 scroll-mt-28">
@@ -143,113 +142,6 @@ const Home = () => {
             <section id="projects" className="max-w-6xl mx-auto mt-16 scroll-mt-28">
                 <div className="flex items-center justify-between mb-6">
                     <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text">
-                        Projects
-                    </Motion.h2>
-                    <span className="text-sm text-app-muted">Images are placeholders</span>
-                </div>
-                <div className="grid gap-6 md:grid-cols-3">
-                    <Motion.div
-                        whileHover={cardHover}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                        className="rounded-xl border border-app-border bg-app-surface/60 p-4"
-                    >
-                        <img
-                            src="/project-placeholder-1.svg"
-                            alt="Project placeholder"
-                            className="w-full h-40 object-cover rounded-lg"
-                        />
-                        <h3 className="text-app-text font-semibold mt-4">Pixie (Flutter)</h3>
-                        <p className="text-xs text-app-accent/80 mt-1">{projectStack[0].stack}</p>
-                        <p className="text-app-muted text-sm mt-2">
-                            Lightweight mobile photo editor with smooth, mobile-first UI.
-                        </p>
-                        <div className="mt-4 flex gap-3 text-sm">
-                            <Link
-                                to="/projects/pixie"
-                                className="text-app-accent hover:text-app-accent/80"
-                            >
-                                View details
-                            </Link>
-                            <a
-                                href="https://github.com/TalhaKarakoyunlu/Pixie"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-app-accent hover:text-app-accent/80"
-                            >
-                                GitHub
-                            </a>
-                        </div>
-                    </Motion.div>
-                    <Motion.div
-                        whileHover={cardHover}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                        className="rounded-xl border border-app-border bg-app-surface/60 p-4"
-                    >
-                        <img
-                            src="/project-placeholder-2.svg"
-                            alt="Project placeholder"
-                            className="w-full h-40 object-cover rounded-lg"
-                        />
-                        <h3 className="text-app-text font-semibold mt-4">Music App (Spotify API)</h3>
-                        <p className="text-xs text-app-accent/80 mt-1">{projectStack[1].stack}</p>
-                        <p className="text-app-muted text-sm mt-2">
-                            Web app for music browsing and playlist management.
-                        </p>
-                        <div className="mt-4 flex gap-3 text-sm">
-                            <Link
-                                to="/projects/music-app"
-                                className="text-app-accent hover:text-app-accent/80"
-                            >
-                                View details
-                            </Link>
-                            <a
-                                href="https://github.com/TalhaKarakoyunlu/Music-App"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-app-accent hover:text-app-accent/80"
-                            >
-                                GitHub
-                            </a>
-                        </div>
-                    </Motion.div>
-                    <Motion.div
-                        whileHover={cardHover}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                        className="rounded-xl border border-app-border bg-app-surface/60 p-4"
-                    >
-                        <img
-                            src="/project-placeholder-3.svg"
-                            alt="Project placeholder"
-                            className="w-full h-40 object-cover rounded-lg"
-                        />
-                        <h3 className="text-app-text font-semibold mt-4">Chat App (Flutter + MySQL)</h3>
-                        <p className="text-xs text-app-accent/80 mt-1">{projectStack[2].stack}</p>
-                        <p className="text-app-muted text-sm mt-2">
-                            Real-time messaging with AES-256 encrypted communication.
-                        </p>
-                        <div className="mt-4 flex gap-3 text-sm">
-                            <Link
-                                to="/projects/chat-app"
-                                className="text-app-accent hover:text-app-accent/80"
-                            >
-                                View details
-                            </Link>
-                            <a
-                                href="https://github.com/TalhaKarakoyunlu/Chat-App"
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-app-accent hover:text-app-accent/80"
-                            >
-                                GitHub
-                            </a>
-                        </div>
-                    </Motion.div>
-                </div>
-            </section>
-
-            <section id="featured" className="max-w-6xl mx-auto mt-16 scroll-mt-28">
-                <div className="flex items-center justify-between mb-6">
-                    <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text">
                         Featured case study
                     </Motion.h2>
                     <span className="text-sm text-app-muted">Deep dive</span>
@@ -280,7 +172,7 @@ const Home = () => {
                                 </div>
                                 <div className="mt-5 flex flex-wrap gap-3 text-sm">
                                     <Link
-                                        to={`/projects/${featuredProject.slug}`}
+                                        to="/projects/fire-detection"
                                         className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
                                     >
                                         View case study
@@ -319,6 +211,14 @@ const Home = () => {
                         Featured case study will appear here soon.
                     </div>
                 )}
+                <div className="mt-6 flex flex-wrap gap-4">
+                    <Link
+                        to="/projects"
+                        className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors text-sm"
+                    >
+                        View all projects
+                    </Link>
+                </div>
             </section>
 
             <section id="skills" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
