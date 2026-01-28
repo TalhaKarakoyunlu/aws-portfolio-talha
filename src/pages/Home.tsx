@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { getFeaturedProject } from '../data/projects';
+import { getFeaturedProject } from '@/data/projects';
 
 const Motion = motion;
 

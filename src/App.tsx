@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import FireDetection from './pages/FireDetection';
-import Home from './pages/Home';
-import ProjectDetail from './pages/ProjectDetail';
-import Projects from './pages/Projects';
+import Navbar from '@/components/Navbar';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
+import FireDetection from '@/pages/FireDetection';
+import Home from '@/pages/Home';
+import ProjectDetail from '@/pages/ProjectDetail';
+import Projects from '@/pages/Projects';
 
 type ThemeMode = 'light' | 'dark';
 
