@@ -65,16 +65,20 @@ const Projects = () => {
                 >
                   View details
                 </Link>
-                {project.links[0] ? (
-                  <a
-                    href={project.links[0].href}
-                    target={project.links[0].external ? '_blank' : undefined}
-                    rel={project.links[0].external ? 'noreferrer' : undefined}
-                    className="px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
-                  >
-                    {project.links[0].label}
-                  </a>
-                ) : null}
+                {project.links[0] ? (() => {
+                  const link = project.links[0];
+                  const isExternal = link.external ?? link.href.startsWith('http');
+                  return (
+                    <a
+                      href={link.href}
+                      target={isExternal ? '_blank' : undefined}
+                      rel={isExternal ? 'noreferrer' : undefined}
+                      className="px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })() : null}
               </div>
             </motion.div>
           ))}
