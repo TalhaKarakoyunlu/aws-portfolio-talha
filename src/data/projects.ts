@@ -94,9 +94,9 @@ export const projects: ProjectDetail[] = [
       },
     ],
     links: [
-      { label: 'YouTube demo', href: 'https://youtu.be/zky8htvPG0o' },
+      { label: 'YouTube Presentation', href: 'https://youtu.be/zky8htvPG0o' },
       { label: 'Roboflow Fire Dataset', href: 'https://universe.roboflow.com/-jwzpw/continuous_fire/dataset/6' },
-      { label: 'Roboflow Smoke Dataset', href: 'https://universe.roboflow.com/orbit-w0l5f/smokedetection-orbit/dataset/2' },
+      { label: 'Roboflow Smoke Dataset', href: 'https://universe.roboflow.com/orbit-w0l5f/smoke-detection-orbit/dataset/2' },
     ],
   },
   {
