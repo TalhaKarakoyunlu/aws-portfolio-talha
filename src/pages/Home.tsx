@@ -1,9 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getFeaturedProject } from '@/data/projects';
-import { metrics, skills } from '@/data/profile';
+import { metrics } from '@/data/profile';
 
-const Motion = motion;
+const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
 
 const Home = () => {
     const shouldReduceMotion = useReducedMotion();
@@ -13,7 +13,7 @@ const Home = () => {
         animate: { opacity: 1, y: 0 },
         transition: { delay, duration: 0.6 },
     });
-    const cardHover = shouldReduceMotion ? undefined : { y: -6 };
+    const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
     const imageHover = shouldReduceMotion ? undefined : { scale: 1.02 };
 
     return (
@@ -21,21 +21,21 @@ const Home = () => {
             <section id="hero" className="max-w-6xl mx-auto scroll-mt-28">
                 <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr] items-center">
                     <div>
-                        <Motion.h2
+                        <motion.h2
                             {...fadeUp(0.4)}
                             className="text-app-accent font-mono text-lg mb-4"
                         >
                             Hi, I am Talha Bahadır Karakoyunlu
-                        </Motion.h2>
+                        </motion.h2>
 
-                        <Motion.h1
+                        <motion.h1
                             {...fadeUp(0.6)}
                             className="text-5xl md:text-7xl font-bold text-app-text mb-6 tracking-tight"
                         >
                             Computer Engineer building reliable systems.
-                        </Motion.h1>
+                        </motion.h1>
 
-                        <Motion.div
+                        <motion.div
                             {...fadeUp(1.1)}
                             className="mt-8 flex flex-wrap gap-4"
                         >
@@ -52,7 +52,7 @@ const Home = () => {
                             >
                                 Contact me
                             </a>
-                        </Motion.div>
+                        </motion.div>
                     </div>
 
                     <div className="flex justify-center">
@@ -68,9 +68,9 @@ const Home = () => {
             </section>
 
             <section id="about" className="max-w-5xl mx-auto mt-20 scroll-mt-28">
-                <Motion.h2 {...fadeUp(0.1)} className="text-2xl font-semibold text-app-text mb-4">
+                <motion.h2 {...fadeUp(0.1)} className="text-2xl font-semibold text-app-text mb-4">
                     About
-                </Motion.h2>
+                </motion.h2>
                 <p className="text-app-muted leading-relaxed">
                     Recent Computer Engineering graduate focused on reliable web and mobile systems. I ship
                     product-ready experiences with clean data models and steady user flows.
@@ -88,62 +88,54 @@ const Home = () => {
             <section id="impact" className="max-w-5xl mx-auto mt-12 scroll-mt-28">
                 <div className="grid gap-4 sm:grid-cols-3">
                     {metrics.map((metric) => (
-                        <Motion.div
+                        <motion.div
                             key={metric.label}
                             whileHover={cardHover}
-                            transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                             className="rounded-xl border border-app-border bg-app-surface/60 p-5 text-center"
                         >
                             <div className="text-2xl font-semibold text-app-text">{metric.value}</div>
                             <div className="text-sm text-app-muted mt-1">{metric.label}</div>
-                        </Motion.div>
+                        </motion.div>
                     ))}
                 </div>
             </section>
 
             <section id="experience" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
-                <Motion.h2 {...fadeUp(0.15)} className="text-2xl font-semibold text-app-text mb-6">
-                    Experience highlights
-                </Motion.h2>
+                <motion.h2 {...fadeUp(0.15)} className="text-2xl font-semibold text-app-text mb-6">
+                    Experience
+                </motion.h2>
                 <div className="grid gap-4 md:grid-cols-2">
-                    <Motion.div
+                    <motion.div
                         whileHover={cardHover}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                         className="rounded-xl border border-app-border bg-app-surface/60 p-5"
                     >
                         <h3 className="text-app-text font-semibold mb-2">SA Tech — Software Developer Intern</h3>
-                        <ul className="text-app-muted text-sm space-y-2">
-                            <li>Built Flutter apps for courier and restaurant workflows.</li>
-                            <li>Delivered admin panels with tracking, CRUD, and map-based UI.</li>
-                            <li>Implemented REST APIs, authentication, and SQL Server logic.</li>
-                        </ul>
-                    </Motion.div>
-                    <Motion.div
+                        <p className="text-app-muted text-sm">
+                            Built Flutter apps and admin panels for courier and restaurant operations, handling live tracking, REST APIs, and SQL Server.
+                        </p>
+                    </motion.div>
+                    <motion.div
                         whileHover={cardHover}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                         className="rounded-xl border border-app-border bg-app-surface/60 p-5"
                     >
-                        <h3 className="text-app-text font-semibold mb-2">AFAC Tech — Intern</h3>
-                        <ul className="text-app-muted text-sm space-y-2">
-                            <li>Built an AI fire and smoke detection system with OpenCV.</li>
-                            <li>Improved accuracy by refining datasets and processing pipelines.</li>
-                            <li>Integrated detection logic into the system architecture.</li>
-                        </ul>
-                    </Motion.div>
+                        <h3 className="text-app-text font-semibold mb-2">AFAC Tech — Computer Vision Intern</h3>
+                        <p className="text-app-muted text-sm">
+                            Built an AI fire and smoke detection pipeline with YOLOv8, trained on consumer hardware — full case study on the projects page.
+                        </p>
+                    </motion.div>
                 </div>
             </section>
 
             <section id="projects" className="max-w-6xl mx-auto mt-16 scroll-mt-28">
                 <div className="flex items-center justify-between mb-6">
-                    <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text">
+                    <motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text">
                         Featured case study
-                    </Motion.h2>
+                    </motion.h2>
                     <span className="text-sm text-app-muted">Deep dive</span>
                 </div>
                 {featuredProject ? (
-                    <Motion.div
+                    <motion.div
                         whileHover={cardHover}
-                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                         className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
                     >
                         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] items-center">
@@ -181,13 +173,12 @@ const Home = () => {
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {featuredProject.gallery.slice(0, 2).map((image) => (
-                                    <Motion.div
+                                    <motion.div
                                         key={image.src}
                                         whileHover={cardHover}
-                                        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                                         className="rounded-xl border border-app-border bg-app-bg/60 p-3"
                                     >
-                                        <Motion.img
+                                        <motion.img
                                             src={image.src}
                                             alt={image.alt}
                                             className="w-full h-32 object-cover rounded-lg"
@@ -195,11 +186,11 @@ const Home = () => {
                                             transition={{ duration: 0.3 }}
                                         />
                                         <p className="text-xs text-app-muted mt-2">{image.caption}</p>
-                                    </Motion.div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
-                    </Motion.div>
+                    </motion.div>
                 ) : (
                     <div className="rounded-2xl border border-app-border bg-app-surface/60 p-6 text-app-muted">
                         Featured case study will appear here soon.
@@ -215,44 +206,27 @@ const Home = () => {
                 </div>
             </section>
 
-            <section id="skills" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
-                <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text mb-6">
-                    Skills
-                </Motion.h2>
-                <div className="flex flex-wrap gap-3 text-sm text-app-text">
-                    {skills.map((skill) => (
-                        <span
-                            key={skill}
-                            className="px-3 py-1 rounded-full border border-app-border bg-app-surface/60"
-                        >
-                            {skill}
-                        </span>
-                    ))}
-                </div>
-            </section>
-
             <section id="education" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
-                <Motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text mb-6">
+                <motion.h2 {...fadeUp(0.2)} className="text-2xl font-semibold text-app-text mb-6">
                     Education
-                </Motion.h2>
-                <Motion.div
+                </motion.h2>
+                <motion.div
                     whileHover={cardHover}
-                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                     className="rounded-xl border border-app-border bg-app-surface/60 p-5"
                 >
                     <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
                     <p className="text-app-muted text-sm mt-2">
                         B.S. Computer Engineering — 09/2021 to 08/2025 · CGPA 3.19 / 4.00
                     </p>
-                </Motion.div>
+                </motion.div>
             </section>
 
             <section id="contact" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
-                <Motion.div
+                <motion.div
                     {...fadeUp(0.2)}
                     className="rounded-2xl border border-app-border bg-app-surface/60 p-8 text-center"
                 >
-                    <h2 className="text-2xl font-semibold text-app-text">Let us build something reliable</h2>
+                    <h2 className="text-2xl font-semibold text-app-text">Let's build something reliable</h2>
                     <p className="text-app-muted mt-3">
                         Reach me at <span className="text-app-text">karakoyunlutalha34@gmail.com</span> and I
                         will respond as soon as possible.
@@ -272,7 +246,7 @@ const Home = () => {
                             Download resume
                         </a>
                     </div>
-                </Motion.div>
+                </motion.div>
             </section>
 
             <footer className="max-w-6xl mx-auto mt-16 border-t border-app-border pt-8 text-sm text-app-muted">
