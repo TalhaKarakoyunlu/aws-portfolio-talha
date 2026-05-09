@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projects } from '@/data/projects';
 
-const Motion = motion;
+const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
 
 const Projects = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -11,30 +11,29 @@ const Projects = () => {
     animate: { opacity: 1, y: 0 },
     transition: { delay, duration: 0.6 },
   });
-  const cardHover = shouldReduceMotion ? undefined : { y: -6 };
+  const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
 
   return (
     <main id="top" className="min-h-screen px-4 pt-28 pb-24">
       <section className="max-w-6xl mx-auto">
-        <Motion.p {...fadeUp(0)} className="text-sm uppercase text-app-accent/80 tracking-widest">
+        <motion.p {...fadeUp(0)} className="text-sm uppercase text-app-accent/80 tracking-widest">
           Projects
-        </Motion.p>
-        <Motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-5xl font-semibold text-app-text mt-2">
+        </motion.p>
+        <motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-5xl font-semibold text-app-text mt-2">
           All projects
-        </Motion.h1>
-        <Motion.p {...fadeUp(0.2)} className="text-app-muted mt-4 max-w-2xl">
+        </motion.h1>
+        <motion.p {...fadeUp(0.2)} className="text-app-muted mt-4 max-w-2xl">
           Browse the full set of projects and open any case study for deeper details.
-        </Motion.p>
+        </motion.p>
       </section>
 
       <section className="max-w-6xl mx-auto mt-10">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <Motion.div
+            <motion.div
               key={project.slug}
               {...fadeUp(0.25 + index * 0.05)}
               whileHover={cardHover}
-              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
               className="rounded-2xl border border-app-border bg-app-surface/60 p-5 flex flex-col"
             >
               <img
@@ -77,7 +76,7 @@ const Projects = () => {
                   </a>
                 ) : null}
               </div>
-            </Motion.div>
+            </motion.div>
           ))}
         </div>
       </section>

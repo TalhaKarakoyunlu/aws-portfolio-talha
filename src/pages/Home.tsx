@@ -1,14 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getFeaturedProject } from '@/data/projects';
+import { metrics, skills } from '@/data/profile';
 
 const Motion = motion;
-
-const metrics = [
-    { label: 'Internships', value: '2' },
-    { label: 'Years coding', value: '4+' },
-    { label: 'Projects shipped', value: '10+' },
-];
 
 const Home = () => {
     const shouldReduceMotion = useReducedMotion();
@@ -226,20 +221,7 @@ const Home = () => {
                     Skills
                 </Motion.h2>
                 <div className="flex flex-wrap gap-3 text-sm text-app-text">
-                    {[
-                        'Flutter',
-                        'ASP.NET MVC',
-                        'REST APIs',
-                        'SQL Server',
-                        'MySQL',
-                        'C#',
-                        'Dart',
-                        'JavaScript',
-                        'Python',
-                        'OpenCV',
-                        'Firebase',
-                        'Git',
-                    ].map((skill) => (
+                    {skills.map((skill) => (
                         <span
                             key={skill}
                             className="px-3 py-1 rounded-full border border-app-border bg-app-surface/60"

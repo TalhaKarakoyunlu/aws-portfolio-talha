@@ -1,28 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { metrics, skills } from '@/data/profile';
 
 const Motion = motion;
-
-const metrics = [
-  { label: 'Internships', value: '2' },
-  { label: 'Years coding', value: '4+' },
-  { label: 'Projects shipped', value: '10+' },
-];
-
-const skills = [
-  'Flutter',
-  'ASP.NET MVC',
-  'REST APIs',
-  'SQL Server',
-  'MySQL',
-  'C#',
-  'Dart',
-  'JavaScript',
-  'Python',
-  'OpenCV',
-  'Firebase',
-  'Git',
-];
 
 const About = () => {
   const shouldReduceMotion = useReducedMotion();

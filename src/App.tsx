@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from '@/layouts/Navbar';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
-import FireDetection from '@/pages/projects/FireDetection';
 import Home from '@/pages/Home';
 import ProjectDetail from '@/pages/projects/ProjectDetail';
 import Projects from '@/pages/projects/Projects';
@@ -78,7 +77,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/fire-detection" element={<FireDetection />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

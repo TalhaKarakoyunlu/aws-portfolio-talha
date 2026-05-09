@@ -18,11 +18,12 @@ Personal portfolio built with React + Vite, deployed on AWS using S3 and CloudFr
 
 ## CI/CD Pipeline
 
-Workflow: `github/workflows/deploy.yml`
+Workflow: `.github/workflows/deploy.yml`
 
 Steps:
+
 1. Checkout code
-2. Setup Node.js 20
+2. Setup Node.js 22
 3. Install dependencies and build
 4. Assume AWS role via OIDC
 5. Sync `dist/` to S3
@@ -31,27 +32,32 @@ Steps:
 ## Getting Started
 
 Prerequisites:
-- Node.js 20+
-- npm 9+
+
+- Node.js 22+
+- pnpm 10+
 
 Install dependencies:
+
 ```
-npm install
+pnpm install
 ```
 
 Start the dev server:
+
 ```
-npm run dev
+pnpm run dev
 ```
 
 Production build:
+
 ```
-npm run build
+pnpm run build
 ```
 
 Preview the production build:
+
 ```
-npm run preview
+pnpm run preview
 ```
 
 ## Required GitHub Secrets
@@ -62,7 +68,7 @@ npm run preview
 ## Project Structure
 
 - `src/` – React application source
-- `github/workflows/deploy.yml` – CI/CD pipeline
+- `.github/workflows/deploy.yml` – CI/CD pipeline
 - `dist/` – Vite production build output (generated)
 
 ## Notes
