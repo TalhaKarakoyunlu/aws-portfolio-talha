@@ -100,6 +100,62 @@ export const projects: ProjectDetail[] = [
     ],
   },
   {
+    title: 'Qwen2.5 Customer Support Chatbot',
+    slug: 'qwen-chatbot',
+    role: 'AI Research Intern',
+    timeline: 'Jun 2025 - Aug 2025',
+    summary:
+      'Fine-tuned Qwen2.5 with LoRA to act as a customer support assistant, with a Gradio interface for testing - all locally on consumer hardware.',
+    stack: ['Python', 'PyTorch', 'Qwen2.5', 'LoRA', 'bitsandbytes', 'Gradio', 'Hugging Face'],
+    highlights: [
+      { label: 'Fine-tuning method', value: 'LoRA on Qwen2.5' },
+      { label: 'Quantization', value: '4-bit (bitsandbytes)' },
+      { label: 'Dataset', value: 'Bitext customer support' },
+      { label: 'Interface', value: 'Gradio UI' },
+    ],
+    problem:
+      "AGU's research track required a local-only LLM customer support assistant with no reliance on commercial cloud APIs. The constraint was making a modern instruction-tuned model behave like a domain assistant on consumer hardware bounded by 6 GB of VRAM, without giving up response quality or training stability.",
+    approach: [
+      'Set up training, inference, and merge scripts; resolved bitsandbytes compatibility issues on Windows that initially forced CPU-only runs.',
+      'Dropped a hand-built dataset attempt and integrated the Bitext customer support dataset from Kaggle, writing CSV-to-JSONL conversion that handled UTF-8 BOM, missing assistant replies, and inconsistent column names.',
+      'Fine-tuned with LoRA, iterating on batch size, gradient accumulation, learning rate scheduling, and 4-bit / FP16 / FP32 fallback to fit the model into available VRAM.',
+      'Ran short smoke tests before long training runs to catch divergence early instead of losing days to bad hyperparameters.',
+      'Built a Gradio UI for interactive testing, defaulting to CPU so it would not contend with GPU training.',
+    ],
+    outcome: [
+      'Delivered a working LoRA-fine-tuned Qwen2.5 customer support assistant running entirely on local consumer hardware.',
+      'Produced a reusable dataset pipeline that turned a noisy public CSV into clean instruction-tuning JSONL, reusable for any similar Hugging Face dataset.',
+      'Shipped a Gradio UI for interactive testing, decoupled from the training GPU so experiments and demos could run side by side.',
+      'Established a smoke-test-before-long-run discipline that kept hyperparameter iteration fast and recoverable on limited hardware.',
+    ],
+    challenges: [
+      'VRAM limits on consumer hardware forced 4-bit quantization, gradient accumulation, and aggressive batch-size tuning to fit Qwen2.5 into 6 GB.',
+      'bitsandbytes Windows compatibility initially forced CPU-only training; required chasing through environment, build, and CUDA-version mismatches before GPU training was usable.',
+      'The Bitext customer support dataset shipped with UTF-8 BOM artifacts, missing assistant replies, and inconsistent column names that broke naive CSV ingestion.',
+      'Long training runs needed careful learning rate scheduling and FP16 / FP32 fallback paths to avoid divergence on the 4-bit base model.',
+      'Gradio UI and training jobs both wanted the GPU; defaulting the UI to CPU sidestepped contention without disrupting active training.',
+      'Abandoned the initial hand-built dataset once the time-vs-quality trade-off proved unjustified, mirroring the AFAC lesson about custom vs. public data.',
+    ],
+    gallery: [
+      {
+        src: '/project-placeholder-1.svg',
+        alt: 'Qwen2.5 LoRA training run placeholder',
+        caption: 'LoRA fine-tuning run on Qwen2.5 placeholder.',
+      },
+      {
+        src: '/project-placeholder-2.svg',
+        alt: 'Bitext dataset preprocessing placeholder',
+        caption: 'CSV-to-JSONL preprocessing pipeline placeholder.',
+      },
+      {
+        src: '/project-placeholder-3.svg',
+        alt: 'Gradio UI for the support chatbot placeholder',
+        caption: 'Gradio interface for interactive testing placeholder.',
+      },
+    ],
+    links: [],
+  },
+  {
     title: 'Pixie',
     slug: 'pixie',
     summary: 'Lightweight mobile photo editor with smooth, mobile-first UI.',

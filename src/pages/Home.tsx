@@ -56,11 +56,11 @@ const Home = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="rounded-2xl border border-app-border bg-app-surface/60 p-6 text-center">
+                        <div className="rounded-2xl border border-app-border bg-app-surface/60 p-4 text-center">
                             <img
                                 src="/Talha_photo.webp"
                                 alt="Talha Bahadır Karakoyunlu"
-                                className="w-64 h-64 object-cover mx-auto rounded-xl"
+                                className="w-72 h-72 object-cover mx-auto rounded-xl"
                             />
                         </div>
                     </div>
@@ -104,12 +104,12 @@ const Home = () => {
                 <motion.h2 {...fadeUp(0.15)} className="text-2xl font-semibold text-app-text mb-6">
                     Experience
                 </motion.h2>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-3">
                     <motion.div
                         whileHover={cardHover}
                         className="rounded-xl border border-app-border bg-app-surface/60 p-5"
                     >
-                        <h3 className="text-app-text font-semibold mb-2">SA Tech — Software Developer Intern</h3>
+                        <h3 className="text-app-text font-semibold mb-2">SA Tech · Software Developer Intern</h3>
                         <p className="text-app-muted text-sm">
                             Built Flutter apps and admin panels for courier and restaurant operations, handling live tracking, REST APIs, and SQL Server.
                         </p>
@@ -118,9 +118,18 @@ const Home = () => {
                         whileHover={cardHover}
                         className="rounded-xl border border-app-border bg-app-surface/60 p-5"
                     >
-                        <h3 className="text-app-text font-semibold mb-2">AFAC Tech — Computer Vision Intern</h3>
+                        <h3 className="text-app-text font-semibold mb-2">AFAC Tech · Computer Vision Intern</h3>
                         <p className="text-app-muted text-sm">
-                            Built an AI fire and smoke detection pipeline with YOLOv8, trained on consumer hardware — full case study on the projects page.
+                            Built an AI fire and smoke detection pipeline with YOLOv8, trained on consumer hardware. Full case study on the projects page.
+                        </p>
+                    </motion.div>
+                    <motion.div
+                        whileHover={cardHover}
+                        className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+                    >
+                        <h3 className="text-app-text font-semibold mb-2">AGU · AI Research Intern</h3>
+                        <p className="text-app-muted text-sm">
+                            Fine-tuned Qwen2.5 with LoRA into a customer support chatbot, with a Gradio UI for testing. Full case study on the projects page.
                         </p>
                     </motion.div>
                 </div>
@@ -216,7 +225,7 @@ const Home = () => {
                 >
                     <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
                     <p className="text-app-muted text-sm mt-2">
-                        B.S. Computer Engineering — 09/2021 to 08/2025 · CGPA 3.19 / 4.00
+                        B.S. Computer Engineering · 09/2021 to 08/2025 · CGPA 3.19 / 4.00
                     </p>
                 </motion.div>
             </section>
