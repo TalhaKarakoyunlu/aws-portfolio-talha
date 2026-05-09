@@ -58,11 +58,10 @@ const Home = () => {
                     <div className="flex justify-center">
                         <div className="rounded-2xl border border-app-border bg-app-surface/60 p-6 text-center">
                             <img
-                                src="/profile-placeholder.svg"
-                                alt="Profile placeholder"
-                                className="w-64 h-64 object-cover mx-auto"
+                                src="/Talha_photo.webp"
+                                alt="Talha Bahadır Karakoyunlu"
+                                className="w-64 h-64 object-cover mx-auto rounded-xl"
                             />
-                            <p className="text-xs text-app-muted mt-3">Profile image placeholder</p>
                         </div>
                     </div>
                 </div>
