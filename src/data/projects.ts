@@ -108,10 +108,10 @@ export const projects: ProjectDetail[] = [
       'Fine-tuned Qwen2.5 with LoRA to act as a customer support assistant, with a Gradio interface for testing - all locally on consumer hardware.',
     stack: ['Python', 'PyTorch', 'Qwen2.5', 'LoRA', 'bitsandbytes', 'Gradio', 'Hugging Face'],
     highlights: [
-      { label: 'Fine-tuning method', value: 'LoRA on Qwen2.5' },
-      { label: 'Quantization', value: '4-bit (bitsandbytes)' },
-      { label: 'Dataset', value: 'Bitext customer support' },
-      { label: 'Interface', value: 'Gradio UI' },
+      { label: 'Base model', value: 'Qwen2.5-1.5B-Instruct' },
+      { label: 'Fine-tuning method', value: 'LoRA (r=64, alpha=16)' },
+      { label: 'Quantization', value: '4-bit + FP16 (bitsandbytes)' },
+      { label: 'Dataset', value: 'Bitext (8,175 examples)' },
     ],
     problem:
       "AGU's research track required a local-only LLM customer support assistant with no reliance on commercial cloud APIs. The constraint was making a modern instruction-tuned model behave like a domain assistant on consumer hardware bounded by 6 GB of VRAM, without giving up response quality or training stability.",
@@ -138,22 +138,19 @@ export const projects: ProjectDetail[] = [
     ],
     gallery: [
       {
-        src: '/project-placeholder-1.svg',
-        alt: 'Qwen2.5 LoRA training run placeholder',
-        caption: 'LoRA fine-tuning run on Qwen2.5 placeholder.',
+        src: '/qwen-chatbot-ui.webp',
+        alt: 'Gradio interface for the customer support chatbot',
+        caption: 'Gradio UI testing the merged LoRA adapter.',
       },
       {
-        src: '/project-placeholder-2.svg',
-        alt: 'Bitext dataset preprocessing placeholder',
-        caption: 'CSV-to-JSONL preprocessing pipeline placeholder.',
-      },
-      {
-        src: '/project-placeholder-3.svg',
-        alt: 'Gradio UI for the support chatbot placeholder',
-        caption: 'Gradio interface for interactive testing placeholder.',
+        src: '/qwen-chatbot-training.webp',
+        alt: 'Qwen2.5 LoRA training run output',
+        caption: 'LoRA fine-tuning run on Qwen2.5-1.5B-Instruct (r=64, alpha=16, 4-bit + FP16).',
       },
     ],
-    links: [],
+    links: [
+      { label: 'YouTube Presentation', href: 'https://youtu.be/12e_yhELeQ4', external: true },
+    ],
   },
   {
     title: 'Pixie',
