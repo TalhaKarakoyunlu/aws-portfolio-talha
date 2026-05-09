@@ -1,13 +1,17 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
-import { getProjectBySlug } from '@/data/projects';
+import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { getProjectBySlug, type ProjectGalleryItem } from '@/data/projects';
 
 const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
 
 const ProjectDetail = () => {
   const { slug } = useParams();
   const shouldReduceMotion = useReducedMotion();
+  const [active, setActive] = useState<ProjectGalleryItem | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const project = getProjectBySlug(slug ?? '');
   const hasMeta = Boolean(project?.role || project?.timeline);
   const caseStudyLabel = project?.featured ? 'Featured case study' : 'Case study';
@@ -19,6 +23,28 @@ const ProjectDetail = () => {
   });
   const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
   const imageHover = shouldReduceMotion ? undefined : { scale: 1.02 };
+
+  useEffect(() => {
+    if (!active) {
+      if (previouslyFocusedRef.current) {
+        previouslyFocusedRef.current.focus();
+        previouslyFocusedRef.current = null;
+      }
+      return;
+    }
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActive(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [active]);
 
   if (!project) {
     return (
@@ -183,13 +209,20 @@ const ProjectDetail = () => {
               whileHover={cardHover}
               className="rounded-2xl border border-app-border bg-app-surface/60 p-4"
             >
-              <motion.img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-56 object-cover rounded-xl"
-                whileHover={imageHover}
-                transition={{ duration: 0.3 }}
-              />
+              <button
+                type="button"
+                onClick={() => setActive(item)}
+                aria-label={`Open ${item.alt}`}
+                className="block w-full rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-app-accent"
+              >
+                <motion.img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-56 object-cover"
+                  whileHover={imageHover}
+                  transition={{ duration: 0.3 }}
+                />
+              </button>
               <p className="text-sm text-app-muted mt-3">{item.caption}</p>
             </motion.div>
           ))}
@@ -208,6 +241,49 @@ const ProjectDetail = () => {
           </ul>
         </div>
       </section>
+
+      <AnimatePresence>
+        {active ? (
+          <motion.div
+            key="lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Gallery image preview"
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setActive(null);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Tab') {
+                e.preventDefault();
+                closeButtonRef.current?.focus();
+              }
+            }}
+            className="fixed inset-0 z-50 bg-black/80 flex flex-col items-center justify-center p-4"
+          >
+            <button
+              ref={closeButtonRef}
+              type="button"
+              onClick={() => setActive(null)}
+              aria-label="Close image preview"
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-app-surface/80 border border-app-border text-app-text hover:bg-app-surface transition-colors focus:outline-none focus:ring-2 focus:ring-app-accent"
+            >
+              <FaTimes />
+            </button>
+            <img
+              src={active.src}
+              alt={active.alt}
+              className="max-w-5xl max-h-[80vh] w-auto h-auto object-contain rounded-xl"
+            />
+            <p className="text-sm text-app-muted mt-4 max-w-2xl text-center">
+              {active.caption}
+            </p>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </main>
   );
 };
