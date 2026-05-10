@@ -99,7 +99,7 @@ const ProjectDetail = () => {
           {hasMeta ? (
             <motion.div
               {...fadeUp(0.25)}
-              className="rounded-xl border border-app-border bg-app-surface/60 px-5 py-4 text-sm text-app-muted"
+              className="rounded-xl border border-app-border bg-app-surface px-5 py-4 text-sm text-app-muted"
             >
               {project.role ? <div className="text-app-text font-semibold">{project.role}</div> : null}
               {project.timeline ? <div className="mt-1">{project.timeline}</div> : null}
@@ -109,7 +109,7 @@ const ProjectDetail = () => {
 
         <motion.div
           {...fadeUp(0.3)}
-          className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
+          className="rounded-2xl border border-app-border bg-app-surface p-6"
         >
           <div className="flex flex-wrap gap-2 text-sm text-app-text">
             {project.stack.map((item) => (
@@ -153,7 +153,7 @@ const ProjectDetail = () => {
               key={highlight.label}
               {...fadeUp(0.35 + index * 0.05)}
               whileHover={cardHover}
-              className="rounded-xl border border-app-border bg-app-surface/60 p-4 text-center"
+              className="rounded-xl border border-app-border bg-app-surface p-4 text-center"
             >
               <div className="text-xl font-semibold text-app-text">{highlight.value}</div>
               <div className="text-xs text-app-muted mt-1">{highlight.label}</div>
@@ -166,7 +166,7 @@ const ProjectDetail = () => {
         <motion.div
           {...fadeUp(0.45)}
           whileHover={cardHover}
-          className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
+          className="rounded-2xl border border-app-border bg-app-surface p-6"
         >
           <h2 className="text-lg font-semibold text-app-text mb-3">Problem</h2>
           <p className="text-app-muted text-sm leading-relaxed">{project.problem}</p>
@@ -174,7 +174,7 @@ const ProjectDetail = () => {
         <motion.div
           {...fadeUp(0.5)}
           whileHover={cardHover}
-          className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
+          className="rounded-2xl border border-app-border bg-app-surface p-6"
         >
           <h2 className="text-lg font-semibold text-app-text mb-3">Approach</h2>
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
@@ -186,7 +186,7 @@ const ProjectDetail = () => {
         <motion.div
           {...fadeUp(0.55)}
           whileHover={cardHover}
-          className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
+          className="rounded-2xl border border-app-border bg-app-surface p-6"
         >
           <h2 className="text-lg font-semibold text-app-text mb-3">Outcome</h2>
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
@@ -207,7 +207,7 @@ const ProjectDetail = () => {
               key={item.src}
               {...fadeUp(0.65 + index * 0.05)}
               whileHover={cardHover}
-              className="rounded-2xl border border-app-border bg-app-surface/60 p-4"
+              className="rounded-2xl border border-app-border bg-app-surface p-4"
             >
               <button
                 type="button"
@@ -233,7 +233,7 @@ const ProjectDetail = () => {
         <motion.h2 {...fadeUp(0.7)} className="text-2xl font-semibold text-app-text mb-4">
           Challenges & constraints
         </motion.h2>
-        <div className="rounded-2xl border border-app-border bg-app-surface/60 p-6">
+        <div className="rounded-2xl border border-app-border bg-app-surface p-6">
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
             {project.challenges.map((item) => (
               <li key={item}>{item}</li>

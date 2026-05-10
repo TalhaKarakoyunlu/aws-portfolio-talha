@@ -34,7 +34,7 @@ const Projects = () => {
               key={project.slug}
               {...fadeUp(0.25 + index * 0.05)}
               whileHover={cardHover}
-              className="rounded-2xl border border-app-border bg-app-surface/60 p-5 flex flex-col"
+              className="rounded-2xl border border-app-border bg-app-surface p-5 flex flex-col"
             >
               <img
                 src={project.gallery[0]?.src}

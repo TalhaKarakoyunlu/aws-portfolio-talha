@@ -28,7 +28,7 @@ const Contact = () => {
       <section className="max-w-5xl mx-auto mt-10">
         <Motion.div
           {...fadeUp(0.3)}
-          className="rounded-2xl border border-app-border bg-app-surface/60 p-8 text-center"
+          className="rounded-2xl border border-app-border bg-app-surface p-8 text-center"
         >
           <div className="flex flex-wrap justify-center gap-4">
             <a

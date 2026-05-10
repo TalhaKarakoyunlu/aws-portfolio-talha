@@ -56,7 +56,7 @@ const Home = () => {
                     </div>
 
                     <div className="flex justify-center">
-                        <div className="rounded-2xl border border-app-border bg-app-surface/60 p-4 text-center">
+                        <div className="rounded-2xl border border-app-border bg-app-surface p-4 text-center">
                             <img
                                 src="/Talha_photo.webp"
                                 alt="Talha Bahadır Karakoyunlu"
@@ -91,7 +91,7 @@ const Home = () => {
                         <motion.div
                             key={metric.label}
                             whileHover={cardHover}
-                            className="rounded-xl border border-app-border bg-app-surface/60 p-5 text-center"
+                            className="rounded-xl border border-app-border bg-app-surface p-5 text-center"
                         >
                             <div className="text-2xl font-semibold text-app-text">{metric.value}</div>
                             <div className="text-sm text-app-muted mt-1">{metric.label}</div>
@@ -107,7 +107,7 @@ const Home = () => {
                 <div className="grid gap-4 md:grid-cols-3">
                     <motion.div
                         whileHover={cardHover}
-                        className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+                        className="rounded-xl border border-app-border bg-app-surface p-5"
                     >
                         <h3 className="text-app-text font-semibold mb-2">SA Tech · Software Developer Intern</h3>
                         <p className="text-app-muted text-sm">
@@ -116,7 +116,7 @@ const Home = () => {
                     </motion.div>
                     <motion.div
                         whileHover={cardHover}
-                        className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+                        className="rounded-xl border border-app-border bg-app-surface p-5"
                     >
                         <h3 className="text-app-text font-semibold mb-2">AFAC Tech · Computer Vision Intern</h3>
                         <p className="text-app-muted text-sm">
@@ -125,7 +125,7 @@ const Home = () => {
                     </motion.div>
                     <motion.div
                         whileHover={cardHover}
-                        className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+                        className="rounded-xl border border-app-border bg-app-surface p-5"
                     >
                         <h3 className="text-app-text font-semibold mb-2">AGU · AI Research Intern</h3>
                         <p className="text-app-muted text-sm">
@@ -145,7 +145,7 @@ const Home = () => {
                 {featuredProject ? (
                     <motion.div
                         whileHover={cardHover}
-                        className="rounded-2xl border border-app-border bg-app-surface/60 p-6"
+                        className="rounded-2xl border border-app-border bg-app-surface p-6"
                     >
                         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] items-center">
                             <div>
@@ -201,7 +201,7 @@ const Home = () => {
                         </div>
                     </motion.div>
                 ) : (
-                    <div className="rounded-2xl border border-app-border bg-app-surface/60 p-6 text-app-muted">
+                    <div className="rounded-2xl border border-app-border bg-app-surface p-6 text-app-muted">
                         Featured case study will appear here soon.
                     </div>
                 )}
@@ -221,7 +221,7 @@ const Home = () => {
                 </motion.h2>
                 <motion.div
                     whileHover={cardHover}
-                    className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+                    className="rounded-xl border border-app-border bg-app-surface p-5"
                 >
                     <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
                     <p className="text-app-muted text-sm mt-2">
@@ -233,7 +233,7 @@ const Home = () => {
             <section id="contact" className="max-w-5xl mx-auto mt-16 scroll-mt-28">
                 <motion.div
                     {...fadeUp(0.2)}
-                    className="rounded-2xl border border-app-border bg-app-surface/60 p-8 text-center"
+                    className="rounded-2xl border border-app-border bg-app-surface p-8 text-center"
                 >
                     <h2 className="text-2xl font-semibold text-app-text">Let's build something reliable</h2>
                     <p className="text-app-muted mt-3">

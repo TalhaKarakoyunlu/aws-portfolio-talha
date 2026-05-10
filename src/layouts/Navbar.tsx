@@ -40,7 +40,7 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
                 <button
                     type="button"
                     onClick={onToggleTheme}
-                    className="inline-flex items-center justify-center rounded-full border border-app-border bg-app-surface/60 p-2 text-app-text hover:bg-app-surface transition-colors"
+                    className="inline-flex items-center justify-center rounded-full border border-app-border bg-app-surface p-2 text-app-text hover:bg-app-surface transition-colors"
                     aria-label="Toggle color theme"
                 >
                     {theme === 'dark' ? <FaSun /> : <FaMoon />}

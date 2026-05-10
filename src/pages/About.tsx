@@ -57,7 +57,7 @@ const About = () => {
           <motion.div
             {...fadeUp(0.35)}
             whileHover={cardHover}
-            className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+            className="rounded-xl border border-app-border bg-app-surface p-5"
           >
             <h3 className="text-app-text font-semibold">SA Tech · Software Developer Intern</h3>
             <ul className="text-app-muted text-sm space-y-2 mt-3 list-disc list-inside">
@@ -71,7 +71,7 @@ const About = () => {
           <motion.div
             {...fadeUp(0.4)}
             whileHover={cardHover}
-            className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+            className="rounded-xl border border-app-border bg-app-surface p-5"
           >
             <h3 className="text-app-text font-semibold">AFAC Tech · Computer Vision Intern</h3>
             <p className="text-xs text-app-muted mt-1">Aug 2024 - Sep 2024</p>
@@ -95,7 +95,7 @@ const About = () => {
           <motion.div
             {...fadeUp(0.45)}
             whileHover={cardHover}
-            className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+            className="rounded-xl border border-app-border bg-app-surface p-5"
           >
             <h3 className="text-app-text font-semibold">AGU · AI Research Intern</h3>
             <p className="text-xs text-app-muted mt-1">Jun 2025 - Aug 2025 · Asst. Prof. Mehmet Gökhan Bakal</p>
@@ -122,7 +122,7 @@ const About = () => {
         </motion.h2>
         <div className="flex flex-wrap gap-3 text-sm text-app-text">
           {skills.map((skill) => (
-            <span key={skill} className="px-3 py-1 rounded-full border border-app-border bg-app-surface/60">
+            <span key={skill} className="px-3 py-1 rounded-full border border-app-border bg-app-surface">
               {skill}
             </span>
           ))}
@@ -136,7 +136,7 @@ const About = () => {
         <motion.div
           {...fadeUp(0.55)}
           whileHover={cardHover}
-          className="rounded-xl border border-app-border bg-app-surface/60 p-5"
+          className="rounded-xl border border-app-border bg-app-surface p-5"
         >
           <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
           <p className="text-app-muted text-sm mt-2">
@@ -159,7 +159,7 @@ const About = () => {
       <section className="max-w-5xl mx-auto mt-12">
         <motion.div
           {...fadeUp(0.7)}
-          className="rounded-2xl border border-app-border bg-app-surface/60 p-6 flex flex-wrap items-center justify-between gap-4"
+          className="rounded-2xl border border-app-border bg-app-surface p-6 flex flex-wrap items-center justify-between gap-4"
         >
           <div>
             <h2 className="text-xl font-semibold text-app-text">Ready to collaborate?</h2>
