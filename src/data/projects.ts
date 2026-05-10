@@ -153,6 +153,58 @@ export const projects: ProjectDetail[] = [
     ],
   },
   {
+    title: 'miRKeggGSM',
+    slug: 'mirkegggsm',
+    role: 'Student Researcher - Capstone Project',
+    timeline: 'Sep 2024 - Jan 2025',
+    summary:
+      'Contributed to a bioinformatics research project developing a machine learning pipeline for cancer classification using miRNA expression data and KEGG pathway knowledge. Supervised by Prof. Burcu Bakir Gungor and Prof. Malik Yousef.',
+    stack: ['Python', 'R', 'KNIME', 'Random Forest', 'scikit-learn'],
+    highlights: [
+      { label: 'Cancer datasets', value: '12 (GEO)' },
+      { label: 'Classification method', value: 'Random Forest' },
+      { label: 'Best AUC', value: '>0.99' },
+      { label: 'Framework', value: 'G-S-M (KEGG pathways)' },
+    ],
+    problem:
+      'High-dimensional miRNA expression data is noisy and hard to interpret. Existing methods ignore biologically meaningful relationships between miRNAs, genes, and pathways, leading to less interpretable cancer classification models.',
+    approach: [
+      'Wrote Python scripts to collect and preprocess 12 miRNA expression datasets from GEO across multiple cancer types.',
+      'Debugged and resolved errors in the existing KNIME workflow nodes to get the G-S-M pipeline running end-to-end.',
+      'Ran the full evaluation pipeline across all 12 datasets and compiled results.',
+      'Wrote the final capstone report documenting methodology, results, and conclusions.',
+    ],
+    outcome: [
+      'Pipeline successfully evaluated across 12 cancer datasets including lung, breast, gastric, and esophageal cancer.',
+      'Achieved AUC above 0.99 on several datasets with accuracy near 96%.',
+      'Disease-enriched KEGG grouping reduced feature count from hundreds to fewer than ten miRNAs in some cases while maintaining strong performance.',
+    ],
+    challenges: [
+      'KNIME workflow had pre-existing node errors that required troubleshooting before any experiments could run.',
+      'Datasets from GEO required custom collection and preprocessing scripts to handle inconsistent formats.',
+      'Large datasets pushed KNIME resource limits, with some runs taking full days to complete.',
+    ],
+    gallery: [
+      {
+        src: '/mirkegggsm-architecture.webp',
+        alt: 'miRKeggGSM G-S-M pipeline architecture diagram',
+        caption: 'G-S-M architecture: Grouping, Scoring, and Modeling pipeline.',
+      },
+      {
+        src: '/mirkegggsm-workflow.webp',
+        alt: 'KNIME workflow implementing the G-S-M pipeline',
+        caption: 'KNIME workflow implementing the G-S-M pipeline.',
+      },
+    ],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/malikyousef/Groups-Filtering-Scoring-in-G-S-M-',
+        external: true,
+      },
+    ],
+  },
+  {
     title: 'Pixie',
     slug: 'pixie',
     summary: 'Lightweight mobile photo editor with smooth, mobile-first UI.',
