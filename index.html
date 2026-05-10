@@ -5,7 +5,22 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="theme-color" content="#eef2f7" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var theme = stored === 'light' || stored === 'dark'
+          ? stored
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', '#0f1729');
+        }
+      } catch (_) {}
+    })();
+  </script>
   <title>Talha Bahadır Karakoyunlu | Computer Engineer</title>
   <meta name="description"
     content="Computer Engineer specializing in mobile, web, and full-stack development. Portfolio of projects in Flutter, ASP.NET MVC, and cloud-native solutions." />

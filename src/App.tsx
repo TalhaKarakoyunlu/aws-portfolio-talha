@@ -13,7 +13,7 @@ const THEME_STORAGE_KEY = 'theme';
 
 const getPreferredTheme = (): ThemeMode => {
   if (typeof window === 'undefined') {
-    return 'dark';
+    return 'light';
   }
 
   const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
@@ -54,7 +54,7 @@ function App() {
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
       const themeColor = getComputedStyle(root).getPropertyValue('--color-bg').trim();
-      metaTheme.setAttribute('content', themeColor || (theme === 'dark' ? '#0a0a0a' : '#f8fafc'));
+      metaTheme.setAttribute('content', themeColor || (theme === 'dark' ? '#0f1729' : '#eef2f7'));
     }
   }, [theme]);
 
