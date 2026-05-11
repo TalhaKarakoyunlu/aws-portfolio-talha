@@ -136,7 +136,7 @@ const ProjectDetail = () => {
               );
             })}
             <Link
-              to="/#contact"
+              to="/contact"
               className="inline-flex items-center justify-center px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors text-sm"
             >
               Contact me

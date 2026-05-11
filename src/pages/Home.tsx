@@ -45,12 +45,12 @@ const Home = () => {
                             >
                                 Download resume
                             </a>
-                            <a
-                                href="#contact"
+                            <Link
+                                to="/contact"
                                 className="px-6 py-3 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
                             >
                                 Contact me
-                            </a>
+                            </Link>
                         </motion.div>
                     </div>
 
@@ -167,12 +167,12 @@ const Home = () => {
                                     >
                                         View case study
                                     </Link>
-                                    <a
-                                        href="#contact"
+                                    <Link
+                                        to="/contact"
                                         className="relative z-10 px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
                                     >
                                         Contact me
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">
@@ -226,25 +226,17 @@ const Home = () => {
                     {...fadeUp(0.2)}
                     className="rounded-2xl border border-app-border bg-app-surface p-8 text-center"
                 >
-                    <h2 className="text-2xl font-semibold text-app-text">Let's build something reliable</h2>
+                    <h2 className="text-2xl font-semibold text-app-text">Let's build something together</h2>
                     <p className="text-app-muted mt-3">
-                        Reach me at <span className="text-app-text">karakoyunlutalha34@gmail.com</span> and I
-                        will respond as soon as possible.
+                        Reach out for roles, collaborations, interesting problems, or just to say hi.
                     </p>
                     <div className="mt-6 flex flex-wrap justify-center gap-4">
-                        <a
-                            href="mailto:karakoyunlutalha34@gmail.com"
+                        <Link
+                            to="/contact"
                             className="px-6 py-3 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
                         >
-                            Email me
-                        </a>
-                        <a
-                            href="/resume.pdf"
-                            download
-                            className="px-6 py-3 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
-                        >
-                            Download resume
-                        </a>
+                            Get in touch
+                        </Link>
                     </div>
                 </motion.div>
             </section>

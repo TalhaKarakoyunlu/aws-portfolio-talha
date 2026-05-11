@@ -1,9 +1,9 @@
 export type Metric = { label: string; value: string };
 
 export const metrics: Metric[] = [
-  { label: 'Internships', value: '2' },
-  { label: 'Years coding', value: '4+' },
-  { label: 'Projects shipped', value: '10+' },
+  { label: 'Internships', value: '3' },
+  { label: 'Years coding', value: '5+' },
+  { label: 'Projects shipped', value: '6' },
 ];
 
 export const skills: string[] = [

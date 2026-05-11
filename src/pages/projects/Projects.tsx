@@ -20,7 +20,7 @@ const Projects = () => {
           All projects
         </motion.h1>
         <motion.p {...fadeUp(0.2)} className="text-app-muted mt-4 max-w-2xl">
-          Browse the full set of projects and open any case study for deeper details.
+          These are the projects I can share publicly. Some of the internship deliverables were built for client or research use and are summarized in the About page rather than reproduced here, and a few personal projects are not publicly shared.
         </motion.p>
       </section>
 

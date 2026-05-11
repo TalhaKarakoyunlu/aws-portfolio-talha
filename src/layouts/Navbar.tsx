@@ -25,6 +25,9 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
             </Link>
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-app-muted">
+                <Link to="/" className="hover:text-app-text transition-colors">
+                    Home
+                </Link>
                 <Link to="/about" className="hover:text-app-text transition-colors">
                     About
                 </Link>
