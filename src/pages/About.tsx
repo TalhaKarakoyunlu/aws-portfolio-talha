@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { skills } from '@/data/profile';
 
-const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
+const CARD_LIFT =
+  'transition-transform duration-200 ease-out hover:-translate-y-1.5 motion-reduce:hover:translate-y-0 motion-reduce:transition-none';
 
 const About = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -12,7 +13,6 @@ const About = () => {
     animate: { opacity: 1, y: 0 },
     transition: { delay, duration: 0.6 },
   });
-  const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
 
   return (
     <main id="top" className="min-h-screen px-4 pt-28 pb-24">
@@ -56,8 +56,7 @@ const About = () => {
         <div className="flex flex-col gap-6">
           <motion.div
             {...fadeUp(0.35)}
-            whileHover={cardHover}
-            className="rounded-xl border border-app-border bg-app-surface p-5"
+            className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
           >
             <h3 className="text-app-text font-semibold">SA Tech · Software Developer Intern</h3>
             <ul className="text-app-muted text-sm space-y-2 mt-3 list-disc list-inside">
@@ -70,8 +69,7 @@ const About = () => {
 
           <motion.div
             {...fadeUp(0.4)}
-            whileHover={cardHover}
-            className="rounded-xl border border-app-border bg-app-surface p-5"
+            className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
           >
             <h3 className="text-app-text font-semibold">AFAC Tech · Computer Vision Intern</h3>
             <p className="text-xs text-app-muted mt-1">Aug 2024 - Sep 2024</p>
@@ -94,8 +92,7 @@ const About = () => {
 
           <motion.div
             {...fadeUp(0.45)}
-            whileHover={cardHover}
-            className="rounded-xl border border-app-border bg-app-surface p-5"
+            className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
           >
             <h3 className="text-app-text font-semibold">AGU · AI Research Intern</h3>
             <p className="text-xs text-app-muted mt-1">Jun 2025 - Aug 2025 · Asst. Prof. Mehmet Gökhan Bakal</p>
@@ -135,8 +132,7 @@ const About = () => {
         </motion.h2>
         <motion.div
           {...fadeUp(0.55)}
-          whileHover={cardHover}
-          className="rounded-xl border border-app-border bg-app-surface p-5"
+          className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
         >
           <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
           <p className="text-app-muted text-sm mt-2">

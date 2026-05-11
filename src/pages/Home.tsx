@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { getFeaturedProject } from '@/data/projects';
 import { metrics } from '@/data/profile';
 
-const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
+const CARD_LIFT =
+    'transition-transform duration-200 ease-out hover:-translate-y-1.5 motion-reduce:hover:translate-y-0 motion-reduce:transition-none';
 
 const Home = () => {
     const shouldReduceMotion = useReducedMotion();
@@ -13,8 +14,6 @@ const Home = () => {
         animate: { opacity: 1, y: 0 },
         transition: { delay, duration: 0.6 },
     });
-    const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
-    const imageHover = shouldReduceMotion ? undefined : { scale: 1.02 };
 
     return (
         <main id="top" className="min-h-screen px-4 pt-28 pb-24">
@@ -90,8 +89,7 @@ const Home = () => {
                     {metrics.map((metric) => (
                         <motion.div
                             key={metric.label}
-                            whileHover={cardHover}
-                            className="rounded-xl border border-app-border bg-app-surface p-5 text-center"
+                            className={`rounded-xl border border-app-border bg-app-surface p-5 text-center ${CARD_LIFT}`}
                         >
                             <div className="text-2xl font-semibold text-app-text">{metric.value}</div>
                             <div className="text-sm text-app-muted mt-1">{metric.label}</div>
@@ -106,8 +104,7 @@ const Home = () => {
                 </motion.h2>
                 <div className="grid gap-4 md:grid-cols-3">
                     <motion.div
-                        whileHover={cardHover}
-                        className="rounded-xl border border-app-border bg-app-surface p-5"
+                        className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
                     >
                         <h3 className="text-app-text font-semibold mb-2">SA Tech · Software Developer Intern</h3>
                         <p className="text-app-muted text-sm">
@@ -115,8 +112,7 @@ const Home = () => {
                         </p>
                     </motion.div>
                     <motion.div
-                        whileHover={cardHover}
-                        className="rounded-xl border border-app-border bg-app-surface p-5"
+                        className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
                     >
                         <h3 className="text-app-text font-semibold mb-2">AFAC Tech · Computer Vision Intern</h3>
                         <p className="text-app-muted text-sm">
@@ -124,8 +120,7 @@ const Home = () => {
                         </p>
                     </motion.div>
                     <motion.div
-                        whileHover={cardHover}
-                        className="rounded-xl border border-app-border bg-app-surface p-5"
+                        className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
                     >
                         <h3 className="text-app-text font-semibold mb-2">AGU · AI Research Intern</h3>
                         <p className="text-app-muted text-sm">
@@ -144,8 +139,7 @@ const Home = () => {
                 </div>
                 {featuredProject ? (
                     <motion.div
-                        whileHover={cardHover}
-                        className="rounded-2xl border border-app-border bg-app-surface p-6"
+                        className={`relative rounded-2xl border border-app-border bg-app-surface p-6 focus-within:ring-2 focus-within:ring-app-accent/40 ${CARD_LIFT}`}
                     >
                         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr] items-center">
                             <div>
@@ -168,13 +162,14 @@ const Home = () => {
                                 <div className="mt-5 flex flex-wrap gap-3 text-sm">
                                     <Link
                                         to="/projects/fire-detection"
-                                        className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
+                                        aria-label={`View case study for ${featuredProject.title}`}
+                                        className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors after:absolute after:inset-0 after:content-[''] after:rounded-2xl focus:outline-none"
                                     >
                                         View case study
                                     </Link>
                                     <a
                                         href="#contact"
-                                        className="px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
+                                        className="relative z-10 px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
                                     >
                                         Contact me
                                     </a>
@@ -182,20 +177,17 @@ const Home = () => {
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">
                                 {featuredProject.gallery.slice(0, 2).map((image) => (
-                                    <motion.div
+                                    <div
                                         key={image.src}
-                                        whileHover={cardHover}
                                         className="rounded-xl border border-app-border bg-app-bg/60 p-3"
                                     >
-                                        <motion.img
+                                        <img
                                             src={image.src}
                                             alt={image.alt}
                                             className="w-full h-32 object-cover rounded-lg"
-                                            whileHover={imageHover}
-                                            transition={{ duration: 0.3 }}
                                         />
                                         <p className="text-xs text-app-muted mt-2">{image.caption}</p>
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -220,8 +212,7 @@ const Home = () => {
                     Education
                 </motion.h2>
                 <motion.div
-                    whileHover={cardHover}
-                    className="rounded-xl border border-app-border bg-app-surface p-5"
+                    className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
                 >
                     <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
                     <p className="text-app-muted text-sm mt-2">

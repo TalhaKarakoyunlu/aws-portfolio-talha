@@ -2,8 +2,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projects } from '@/data/projects';
 
-const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
-
 const Projects = () => {
   const shouldReduceMotion = useReducedMotion();
   const fadeUp = (delay = 0) => ({
@@ -11,7 +9,6 @@ const Projects = () => {
     animate: { opacity: 1, y: 0 },
     transition: { delay, duration: 0.6 },
   });
-  const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
 
   return (
     <main id="top" className="min-h-screen px-4 pt-28 pb-24">
@@ -33,8 +30,7 @@ const Projects = () => {
             <motion.div
               key={project.slug}
               {...fadeUp(0.25 + index * 0.05)}
-              whileHover={cardHover}
-              className="rounded-2xl border border-app-border bg-app-surface p-5 flex flex-col"
+              className="relative rounded-2xl border border-app-border bg-app-surface p-5 flex flex-col transition-transform duration-200 ease-out hover:-translate-y-1.5 motion-reduce:hover:translate-y-0 motion-reduce:transition-none focus-within:ring-2 focus-within:ring-app-accent/40"
             >
               <img
                 src={project.gallery[0]?.src}
@@ -61,7 +57,8 @@ const Projects = () => {
               <div className="mt-5 flex flex-wrap gap-3 text-sm">
                 <Link
                   to={`/projects/${project.slug}`}
-                  className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
+                  aria-label={`View details for ${project.title}`}
+                  className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors after:absolute after:inset-0 after:content-[''] after:rounded-2xl focus:outline-none"
                 >
                   View details
                 </Link>
@@ -73,7 +70,7 @@ const Projects = () => {
                       href={link.href}
                       target={isExternal ? '_blank' : undefined}
                       rel={isExternal ? 'noreferrer' : undefined}
-                      className="px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
+                      className="relative z-10 px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
                     >
                       {link.label}
                     </a>

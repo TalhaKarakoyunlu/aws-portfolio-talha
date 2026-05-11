@@ -4,7 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaTimes } from 'react-icons/fa';
 import { getProjectBySlug, type ProjectGalleryItem } from '@/data/projects';
 
-const SPRING = { type: 'spring', stiffness: 260, damping: 20 } as const;
+const CARD_LIFT =
+  'transition-transform duration-200 ease-out hover:-translate-y-1.5 motion-reduce:hover:translate-y-0 motion-reduce:transition-none';
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -21,8 +22,6 @@ const ProjectDetail = () => {
     animate: { opacity: 1, y: 0 },
     transition: { delay, duration: 0.6 },
   });
-  const cardHover = shouldReduceMotion ? undefined : { y: -6, transition: SPRING };
-  const imageHover = shouldReduceMotion ? undefined : { scale: 1.02 };
 
   useEffect(() => {
     if (!active) {
@@ -152,8 +151,7 @@ const ProjectDetail = () => {
             <motion.div
               key={highlight.label}
               {...fadeUp(0.35 + index * 0.05)}
-              whileHover={cardHover}
-              className="rounded-xl border border-app-border bg-app-surface p-4 text-center"
+              className={`rounded-xl border border-app-border bg-app-surface p-4 text-center ${CARD_LIFT}`}
             >
               <div className="text-xl font-semibold text-app-text">{highlight.value}</div>
               <div className="text-xs text-app-muted mt-1">{highlight.label}</div>
@@ -165,16 +163,14 @@ const ProjectDetail = () => {
       <section className="max-w-6xl mx-auto mt-12 grid gap-6 lg:grid-cols-3">
         <motion.div
           {...fadeUp(0.45)}
-          whileHover={cardHover}
-          className="rounded-2xl border border-app-border bg-app-surface p-6"
+          className={`rounded-2xl border border-app-border bg-app-surface p-6 ${CARD_LIFT}`}
         >
           <h2 className="text-lg font-semibold text-app-text mb-3">Problem</h2>
           <p className="text-app-muted text-sm leading-relaxed">{project.problem}</p>
         </motion.div>
         <motion.div
           {...fadeUp(0.5)}
-          whileHover={cardHover}
-          className="rounded-2xl border border-app-border bg-app-surface p-6"
+          className={`rounded-2xl border border-app-border bg-app-surface p-6 ${CARD_LIFT}`}
         >
           <h2 className="text-lg font-semibold text-app-text mb-3">Approach</h2>
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
@@ -185,8 +181,7 @@ const ProjectDetail = () => {
         </motion.div>
         <motion.div
           {...fadeUp(0.55)}
-          whileHover={cardHover}
-          className="rounded-2xl border border-app-border bg-app-surface p-6"
+          className={`rounded-2xl border border-app-border bg-app-surface p-6 ${CARD_LIFT}`}
         >
           <h2 className="text-lg font-semibold text-app-text mb-3">Outcome</h2>
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
@@ -206,21 +201,18 @@ const ProjectDetail = () => {
             <motion.div
               key={item.src}
               {...fadeUp(0.65 + index * 0.05)}
-              whileHover={cardHover}
-              className="rounded-2xl border border-app-border bg-app-surface p-4"
+              className={`rounded-2xl border border-app-border bg-app-surface p-4 ${CARD_LIFT}`}
             >
               <button
                 type="button"
                 onClick={() => setActive(item)}
                 aria-label={`Open ${item.alt}`}
-                className="block w-full rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-app-accent"
+                className="block w-full rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-app-accent group"
               >
-                <motion.img
+                <img
                   src={item.src}
                   alt={item.alt}
-                  className="w-full h-56 object-cover"
-                  whileHover={imageHover}
-                  transition={{ duration: 0.3 }}
+                  className="w-full h-56 object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02] motion-reduce:group-hover:scale-100 motion-reduce:transition-none"
                 />
               </button>
               <p className="text-sm text-app-muted mt-3">{item.caption}</p>
