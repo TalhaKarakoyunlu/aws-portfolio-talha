@@ -129,18 +129,12 @@ const ProjectDetail = () => {
                   href={link.href}
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noreferrer' : undefined}
-                  className="inline-flex items-center justify-center px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors text-sm"
+                  className="inline-flex items-center justify-center px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors text-sm"
                 >
                   {link.label}
                 </a>
               );
             })}
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors text-sm"
-            >
-              Contact me
-            </Link>
           </div>
         </motion.div>
       </section>

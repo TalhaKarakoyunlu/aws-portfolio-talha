@@ -167,12 +167,6 @@ const Home = () => {
                                     >
                                         View case study
                                     </Link>
-                                    <Link
-                                        to="/contact"
-                                        className="relative z-10 px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
-                                    >
-                                        Contact me
-                                    </Link>
                                 </div>
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">

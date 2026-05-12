@@ -70,7 +70,7 @@ const Projects = () => {
                       href={link.href}
                       target={isExternal ? '_blank' : undefined}
                       rel={isExternal ? 'noreferrer' : undefined}
-                      className="relative z-10 px-4 py-2 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
+                      className="relative z-10 px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
                     >
                       {link.label}
                     </a>
