@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 import Navbar from '@/layouts/Navbar';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
@@ -44,6 +45,7 @@ const ScrollToHash = () => {
 };
 
 function App() {
+  const { messages } = useLanguage();
   const [theme, setTheme] = useState<ThemeMode>(() => getPreferredTheme());
 
   useEffect(() => {
@@ -69,7 +71,7 @@ function App() {
           href="#top"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-app-surface focus:px-4 focus:py-2 focus:text-app-text focus:shadow-lg"
         >
-          Skip to content
+          {messages.skipToContent}
         </a>
         <Navbar theme={theme} onToggleTheme={handleToggleTheme} />
         <ScrollToHash />

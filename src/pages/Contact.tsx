@@ -1,9 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Motion = motion;
 
 const Contact = () => {
   const shouldReduceMotion = useReducedMotion();
+  const { messages: m } = useLanguage();
   const fadeUp = (delay = 0) => ({
     initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -14,14 +16,15 @@ const Contact = () => {
     <main id="top" className="min-h-screen px-4 pt-28 pb-24">
       <section className="max-w-5xl mx-auto text-center">
         <Motion.p {...fadeUp(0)} className="text-sm uppercase text-app-accent/80 tracking-widest">
-          Contact
+          {m.contact.kicker}
         </Motion.p>
         <Motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-5xl font-semibold text-app-text mt-2">
-          Let us build something reliable
+          {m.contact.title}
         </Motion.h1>
         <Motion.p {...fadeUp(0.2)} className="text-app-muted mt-4">
-          Reach me at <span className="text-app-text">karakoyunlutalha34@gmail.com</span> and I will
-          respond as soon as possible.
+          {m.contact.introBefore}
+          <span className="text-app-text">karakoyunlutalha34@gmail.com</span>
+          {m.contact.introAfter}
         </Motion.p>
       </section>
 
@@ -35,14 +38,14 @@ const Contact = () => {
               href="mailto:karakoyunlutalha34@gmail.com"
               className="px-6 py-3 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
             >
-              Email me
+              {m.contact.emailMe}
             </a>
             <a
               href="/resume.pdf"
               download
               className="px-6 py-3 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
             >
-              Download resume
+              {m.contact.downloadResume}
             </a>
             <a
               href="https://github.com/TalhaKarakoyunlu"
@@ -50,7 +53,7 @@ const Contact = () => {
               rel="noreferrer"
               className="px-6 py-3 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
             >
-              GitHub
+              {m.contact.github}
             </a>
           </div>
         </Motion.div>

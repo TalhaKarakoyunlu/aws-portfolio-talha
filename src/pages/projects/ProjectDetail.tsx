@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import { FaArrowLeft, FaTimes } from 'react-icons/fa';
+import { useLanguage } from '@/context/LanguageContext';
+import { interpolate } from '@/locales/interpolate';
 import { getProjectBySlug, type ProjectGalleryItem } from '@/data/projects';
 
 const CARD_LIFT =
@@ -9,13 +11,16 @@ const CARD_LIFT =
 
 const ProjectDetail = () => {
   const { slug } = useParams();
+  const { locale, messages: m } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const [active, setActive] = useState<ProjectGalleryItem | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
-  const project = getProjectBySlug(slug ?? '');
+  const project = getProjectBySlug(slug ?? '', locale);
   const hasMeta = Boolean(project?.role || project?.timeline);
-  const caseStudyLabel = project?.featured ? 'Featured case study' : 'Case study';
+  const caseStudyLabel = project?.featured
+    ? m.projectDetail.featuredCaseStudy
+    : m.projectDetail.caseStudy;
 
   const fadeUp = (delay = 0) => ({
     initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
@@ -50,17 +55,14 @@ const ProjectDetail = () => {
       <main className="min-h-screen px-4 pt-28 pb-24">
         <section className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-semibold text-app-text mb-4">
-            Project not found
+            {m.projectDetail.notFoundTitle}
           </h1>
-          <p className="text-app-muted mb-6">
-            The project you are looking for does not exist yet. Browse the homepage for current
-            highlights.
-          </p>
+          <p className="text-app-muted mb-6">{m.projectDetail.notFoundBody}</p>
           <Link
             to="/projects"
             className="inline-flex items-center justify-center px-6 py-3 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
           >
-            Back to projects
+            {m.projectDetail.backToProjects}
           </Link>
         </section>
       </main>
@@ -75,7 +77,7 @@ const ProjectDetail = () => {
           className="inline-flex items-center gap-2 text-sm text-app-muted hover:text-app-text transition-colors"
         >
           <FaArrowLeft className="text-xs" />
-          All projects
+          {m.projectDetail.allProjects}
         </Link>
       </div>
 
@@ -159,14 +161,14 @@ const ProjectDetail = () => {
           {...fadeUp(0.45)}
           className={`rounded-2xl border border-app-border bg-app-surface p-6 ${CARD_LIFT}`}
         >
-          <h2 className="text-lg font-semibold text-app-text mb-3">Problem</h2>
+          <h2 className="text-lg font-semibold text-app-text mb-3">{m.projectDetail.problem}</h2>
           <p className="text-app-muted text-sm leading-relaxed">{project.problem}</p>
         </motion.div>
         <motion.div
           {...fadeUp(0.5)}
           className={`rounded-2xl border border-app-border bg-app-surface p-6 ${CARD_LIFT}`}
         >
-          <h2 className="text-lg font-semibold text-app-text mb-3">Approach</h2>
+          <h2 className="text-lg font-semibold text-app-text mb-3">{m.projectDetail.approach}</h2>
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
             {project.approach.map((item) => (
               <li key={item}>{item}</li>
@@ -177,7 +179,7 @@ const ProjectDetail = () => {
           {...fadeUp(0.55)}
           className={`rounded-2xl border border-app-border bg-app-surface p-6 ${CARD_LIFT}`}
         >
-          <h2 className="text-lg font-semibold text-app-text mb-3">Outcome</h2>
+          <h2 className="text-lg font-semibold text-app-text mb-3">{m.projectDetail.outcome}</h2>
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
             {project.outcome.map((item) => (
               <li key={item}>{item}</li>
@@ -188,7 +190,7 @@ const ProjectDetail = () => {
 
       <section className="max-w-6xl mx-auto mt-12">
         <motion.h2 {...fadeUp(0.6)} className="text-2xl font-semibold text-app-text mb-6">
-          Gallery
+          {m.projectDetail.gallery}
         </motion.h2>
         <div className="grid gap-6 md:grid-cols-2">
           {project.gallery.map((item, index) => (
@@ -200,7 +202,7 @@ const ProjectDetail = () => {
               <button
                 type="button"
                 onClick={() => setActive(item)}
-                aria-label={`Open ${item.alt}`}
+                aria-label={interpolate(m.projectDetail.openImageAria, { alt: item.alt })}
                 className="block w-full rounded-xl overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-app-accent group"
               >
                 <img
@@ -217,7 +219,7 @@ const ProjectDetail = () => {
 
       <section className="max-w-6xl mx-auto mt-12">
         <motion.h2 {...fadeUp(0.7)} className="text-2xl font-semibold text-app-text mb-4">
-          Challenges & constraints
+          {m.projectDetail.challenges}
         </motion.h2>
         <div className="rounded-2xl border border-app-border bg-app-surface p-6">
           <ul className="text-app-muted text-sm space-y-2 list-disc list-inside">
@@ -234,7 +236,7 @@ const ProjectDetail = () => {
             key="lightbox"
             role="dialog"
             aria-modal="true"
-            aria-label="Gallery image preview"
+            aria-label={m.projectDetail.lightboxAria}
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
@@ -254,7 +256,7 @@ const ProjectDetail = () => {
               ref={closeButtonRef}
               type="button"
               onClick={() => setActive(null)}
-              aria-label="Close image preview"
+              aria-label={m.projectDetail.closeLightbox}
               className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-app-surface/80 border border-app-border text-app-text hover:bg-app-surface transition-colors focus:outline-none focus:ring-2 focus:ring-app-accent"
             >
               <FaTimes />
@@ -264,9 +266,7 @@ const ProjectDetail = () => {
               alt={active.alt}
               className="max-w-5xl max-h-[80vh] w-auto h-auto object-contain rounded-xl"
             />
-            <p className="text-sm text-app-muted mt-4 max-w-2xl text-center">
-              {active.caption}
-            </p>
+            <p className="text-sm text-app-muted mt-4 max-w-2xl text-center">{active.caption}</p>
           </motion.div>
         ) : null}
       </AnimatePresence>

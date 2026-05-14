@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
+import { useLanguage } from '@/context/LanguageContext';
 import { skills } from '@/data/profile';
 
 const CARD_LIFT =
@@ -8,6 +9,7 @@ const CARD_LIFT =
 
 const About = () => {
   const shouldReduceMotion = useReducedMotion();
+  const { messages: m } = useLanguage();
   const fadeUp = (delay = 0) => ({
     initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -22,48 +24,39 @@ const About = () => {
           className="inline-flex items-center gap-2 text-sm text-app-muted hover:text-app-text transition-colors"
         >
           <FaArrowLeft className="text-xs" />
-          Home
+          {m.about.backHome}
         </Link>
       </div>
 
       <section className="max-w-5xl mx-auto">
         <motion.p {...fadeUp(0)} className="text-sm uppercase text-app-accent/80 tracking-widest">
-          About
+          {m.about.kicker}
         </motion.p>
         <motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-5xl font-semibold text-app-text mt-2">
-          Building reliable systems for real-world operations
+          {m.about.title}
         </motion.h1>
         <motion.p {...fadeUp(0.2)} className="text-app-muted mt-4 leading-relaxed">
-          Computer Engineering graduate with experience across mobile and web application development.
-          I've shipped Flutter apps for courier and restaurant operations, built admin panels with
-          real-time tracking, and implemented backend features in ASP.NET MVC with SQL Server. I enjoy
-          projects that demand reliability, solid data models, and clean user flows.
+          {m.about.p1}
         </motion.p>
         <motion.p {...fadeUp(0.25)} className="text-app-muted mt-4 leading-relaxed">
-          I got into computer engineering because I wanted to build things that actually work under
-          pressure. Not demos, not prototypes, but systems that hold up when real people depend on
-          them. That thread runs through everything I've worked on: courier logistics apps that had to
-          be reliable during peak hours, a fire detection model that had to run on constrained
-          hardware, a cancer classification pipeline that had to be reproducible. I care less about
-          the stack and more about whether the output is something you can trust.
+          {m.about.p2}
         </motion.p>
       </section>
 
       <section className="max-w-5xl mx-auto mt-12">
         <motion.h2 {...fadeUp(0.3)} className="text-2xl font-semibold text-app-text mb-6">
-          Experience
+          {m.about.experienceHeading}
         </motion.h2>
         <div className="flex flex-col gap-6">
           <motion.div
             {...fadeUp(0.35)}
             className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
           >
-            <h3 className="text-app-text font-semibold">SA Tech · Software Developer Intern</h3>
+            <h3 className="text-app-text font-semibold">{m.about.saTitle}</h3>
             <ul className="text-app-muted text-sm space-y-2 mt-3 list-disc list-inside">
-              <li>CallerID: Flutter app that detects incoming calls and matches them to backend contacts; normalizing "+90" vs "0" phone formats was the sharpest edge.</li>
-              <li>HesapKurye Mobile: Flutter admin app with real-time courier tracking, AES-256 credential storage, and dynamic pricing models on a multi-module codebase.</li>
-              <li>HesapKurye API: ASP.NET MVC controllers with token middleware, GeoJSON polygon endpoints for delivery zones, and SQL parameterization. Learned how quickly an untested auth layer becomes a liability.</li>
-              <li>HesapPOS Trendyol: bidirectional menu sync via Trendyol's batch API with partial-failure handling, cutting manual price-update work to nearly zero despite outdated docs.</li>
+              {m.about.saItems.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
             </ul>
           </motion.div>
 
@@ -71,21 +64,15 @@ const About = () => {
             {...fadeUp(0.4)}
             className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
           >
-            <h3 className="text-app-text font-semibold">AFAC Tech · Computer Vision Intern</h3>
-            <p className="text-xs text-app-muted mt-1">Aug 2024 - Sep 2024</p>
-            <p className="text-app-muted text-sm mt-3">
-              Built a fire and smoke detection pipeline from OpenCV preprocessing through YOLOv5 to a
-              production YOLOv8 model, plus an email alerting system that fired on detection events.
-              Trained locally on an RTX 3060 under hard VRAM constraints. Started by trying to build a
-              custom dataset, switched to public Roboflow sets once the time-vs-coverage cost proved
-              disproportionate.
-            </p>
+            <h3 className="text-app-text font-semibold">{m.about.afacTitle}</h3>
+            <p className="text-xs text-app-muted mt-1">{m.about.afacDates}</p>
+            <p className="text-app-muted text-sm mt-3">{m.about.afacBody}</p>
             <div className="mt-4">
               <Link
                 to="/projects/fire-detection"
                 className="inline-flex items-center justify-center px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors text-sm"
               >
-                View case study
+                {m.about.afacCta}
               </Link>
             </div>
           </motion.div>
@@ -94,19 +81,15 @@ const About = () => {
             {...fadeUp(0.45)}
             className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
           >
-            <h3 className="text-app-text font-semibold">AGU · AI Research Intern</h3>
-            <p className="text-xs text-app-muted mt-1">Jun 2025 - Aug 2025 · Asst. Prof. Mehmet Gökhan Bakal</p>
-            <p className="text-app-muted text-sm mt-3">
-              Fine-tuned Qwen2.5 with LoRA to act as a customer support chatbot, working through
-              bitsandbytes Windows compatibility issues, dataset encoding cleanup, and VRAM-bound
-              training with 4-bit quantization. Shipped a Gradio UI for interactive testing.
-            </p>
+            <h3 className="text-app-text font-semibold">{m.about.aguTitle}</h3>
+            <p className="text-xs text-app-muted mt-1">{m.about.aguDates}</p>
+            <p className="text-app-muted text-sm mt-3">{m.about.aguBody}</p>
             <div className="mt-4">
               <Link
                 to="/projects/qwen-chatbot"
                 className="inline-flex items-center justify-center px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors text-sm"
               >
-                View case study
+                {m.about.aguCta}
               </Link>
             </div>
           </motion.div>
@@ -115,7 +98,7 @@ const About = () => {
 
       <section className="max-w-5xl mx-auto mt-12">
         <motion.h2 {...fadeUp(0.45)} className="text-2xl font-semibold text-app-text mb-6">
-          Skills
+          {m.about.skillsHeading}
         </motion.h2>
         <div className="flex flex-wrap gap-3 text-sm text-app-text">
           {skills.map((skill) => (
@@ -128,27 +111,23 @@ const About = () => {
 
       <section className="max-w-5xl mx-auto mt-12">
         <motion.h2 {...fadeUp(0.5)} className="text-2xl font-semibold text-app-text mb-6">
-          Education
+          {m.about.educationHeading}
         </motion.h2>
         <motion.div
           {...fadeUp(0.55)}
           className={`rounded-xl border border-app-border bg-app-surface p-5 ${CARD_LIFT}`}
         >
-          <h3 className="text-app-text font-semibold">Abdullah Gül University</h3>
-          <p className="text-app-muted text-sm mt-2">
-            B.S. Computer Engineering · 09/2021 to 08/2025 · CGPA 3.19 / 4.00
-          </p>
+          <h3 className="text-app-text font-semibold">{m.about.eduAguTitle}</h3>
+          <p className="text-app-muted text-sm mt-2">{m.about.eduAguBody}</p>
         </motion.div>
       </section>
 
       <section className="max-w-5xl mx-auto mt-12">
         <motion.h2 {...fadeUp(0.6)} className="text-2xl font-semibold text-app-text mb-4">
-          What I'm looking for
+          {m.about.lookingHeading}
         </motion.h2>
         <motion.p {...fadeUp(0.65)} className="text-app-muted leading-relaxed">
-          I'm currently open to both full-time engineering roles and graduate programs in AI or
-          software engineering. I'm looking for a team that takes the engineering seriously and has
-          the discipline to do the work properly.
+          {m.about.lookingBody}
         </motion.p>
       </section>
 
@@ -158,14 +137,14 @@ const About = () => {
           className="rounded-2xl border border-app-border bg-app-surface p-6 flex flex-wrap items-center justify-between gap-4"
         >
           <div>
-            <h2 className="text-xl font-semibold text-app-text">Ready to collaborate?</h2>
-            <p className="text-app-muted mt-2">Reach out for roles, projects, or collaborations.</p>
+            <h2 className="text-xl font-semibold text-app-text">{m.about.collaborateTitle}</h2>
+            <p className="text-app-muted mt-2">{m.about.collaborateBody}</p>
           </div>
           <Link
             to="/contact"
             className="inline-flex items-center justify-center px-6 py-3 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors"
           >
-            Contact me
+            {m.about.collaborateCta}
           </Link>
         </motion.div>
       </section>

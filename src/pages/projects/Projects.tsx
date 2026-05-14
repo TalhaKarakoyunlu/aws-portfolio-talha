@@ -1,9 +1,13 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { projects } from '@/data/projects';
+import { useLanguage } from '@/context/LanguageContext';
+import { interpolate } from '@/locales/interpolate';
+import { getProjects } from '@/data/projects';
 
 const Projects = () => {
   const shouldReduceMotion = useReducedMotion();
+  const { locale, messages: m } = useLanguage();
+  const projects = getProjects(locale);
   const fadeUp = (delay = 0) => ({
     initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -14,13 +18,13 @@ const Projects = () => {
     <main id="top" className="min-h-screen px-4 pt-28 pb-24">
       <section className="max-w-6xl mx-auto">
         <motion.p {...fadeUp(0)} className="text-sm uppercase text-app-accent/80 tracking-widest">
-          Projects
+          {m.projectsPage.kicker}
         </motion.p>
         <motion.h1 {...fadeUp(0.1)} className="text-4xl md:text-5xl font-semibold text-app-text mt-2">
-          All projects
+          {m.projectsPage.title}
         </motion.h1>
         <motion.p {...fadeUp(0.2)} className="text-app-muted mt-4 max-w-2xl">
-          These are the projects I can share publicly. Some of the internship deliverables were built for client or research use and are summarized in the About page rather than reproduced here, and a few personal projects are not publicly shared.
+          {m.projectsPage.intro}
         </motion.p>
       </section>
 
@@ -40,7 +44,9 @@ const Projects = () => {
               <div className="mt-4 flex items-start justify-between gap-3">
                 <h2 className="text-lg font-semibold text-app-text">{project.title}</h2>
                 {project.featured ? (
-                  <span className="text-xs uppercase tracking-widest text-app-accent/80">Featured</span>
+                  <span className="text-xs uppercase tracking-widest text-app-accent/80">
+                    {m.projectsPage.featured}
+                  </span>
                 ) : null}
               </div>
               <p className="text-sm text-app-muted mt-2">{project.summary}</p>
@@ -57,10 +63,10 @@ const Projects = () => {
               <div className="mt-5 flex flex-wrap gap-3 text-sm">
                 <Link
                   to={`/projects/${project.slug}`}
-                  aria-label={`View details for ${project.title}`}
+                  aria-label={interpolate(m.projectsPage.viewDetailsAria, { title: project.title })}
                   className="px-4 py-2 border border-app-accent text-app-accent rounded hover:bg-app-surface transition-colors after:absolute after:inset-0 after:content-[''] after:rounded-2xl focus:outline-none"
                 >
-                  View details
+                  {m.projectsPage.viewDetails}
                 </Link>
                 {project.links[0] ? (() => {
                   const link = project.links[0];
