@@ -13,6 +13,9 @@ type NavbarProps = {
 const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
   const { locale, setLocale, messages: m } = useLanguage();
 
+  const localeBtnClass =
+    'inline-flex min-h-8 min-w-[2.25rem] shrink-0 items-center justify-center rounded-full px-2 text-sm font-semibold leading-none tracking-wide transition-colors';
+
   return (
     <MotionNav
       initial={{ y: -100, opacity: 0 }}
@@ -47,24 +50,28 @@ const Navbar = ({ theme, onToggleTheme }: NavbarProps) => {
           <button
             type="button"
             onClick={() => setLocale('tr')}
-            className={`px-2 py-1 text-base rounded-full transition-colors ${
-              locale === 'tr' ? 'bg-app-accent/15 text-app-text' : 'hover:text-app-text'
+            className={`${localeBtnClass} ${
+              locale === 'tr'
+                ? 'bg-app-accent/15 text-app-text'
+                : 'text-app-muted hover:text-app-text'
             }`}
             aria-label={m.nav.switchToTr}
             aria-pressed={locale === 'tr'}
           >
-            🇹🇷
+            TR
           </button>
           <button
             type="button"
             onClick={() => setLocale('en')}
-            className={`px-2 py-1 text-base rounded-full transition-colors ${
-              locale === 'en' ? 'bg-app-accent/15 text-app-text' : 'hover:text-app-text'
+            className={`${localeBtnClass} ${
+              locale === 'en'
+                ? 'bg-app-accent/15 text-app-text'
+                : 'text-app-muted hover:text-app-text'
             }`}
             aria-label={m.nav.switchToEn}
             aria-pressed={locale === 'en'}
           >
-            🇬🇧
+            EN
           </button>
         </div>
         <button
