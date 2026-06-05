@@ -1,11 +1,13 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { getResumePath } from '@/data/resume';
 
 const Motion = motion;
 
 const Contact = () => {
   const shouldReduceMotion = useReducedMotion();
-  const { messages: m } = useLanguage();
+  const { locale, messages: m } = useLanguage();
+  const resumePath = getResumePath(locale);
   const fadeUp = (delay = 0) => ({
     initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -41,7 +43,7 @@ const Contact = () => {
               {m.contact.emailMe}
             </a>
             <a
-              href="/resume.pdf"
+              href={resumePath}
               download
               className="px-6 py-3 border border-app-border text-app-text rounded hover:bg-app-surface transition-colors"
             >

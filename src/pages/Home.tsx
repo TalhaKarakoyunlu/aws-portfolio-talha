@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { interpolate } from '@/locales/interpolate';
 import { getFeaturedProject } from '@/data/projects';
+import { getResumePath } from '@/data/resume';
 
 const CARD_LIFT =
   'transition-transform duration-200 ease-out hover:-translate-y-1.5 motion-reduce:hover:translate-y-0 motion-reduce:transition-none';
@@ -11,6 +12,7 @@ const Home = () => {
   const shouldReduceMotion = useReducedMotion();
   const { locale, messages: m } = useLanguage();
   const featuredProject = getFeaturedProject(locale);
+  const resumePath = getResumePath(locale);
   const fadeUp = (delay = 0) => ({
     initial: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
     animate: { opacity: 1, y: 0 },
@@ -41,7 +43,7 @@ const Home = () => {
               className="mt-8 flex flex-wrap gap-4"
             >
               <a
-                href="/resume.pdf"
+                href={resumePath}
                 download
                 className="px-6 py-3 border border-app-accent text-app-accent rounded hover:bg-app-surface/80 transition-colors"
               >
@@ -233,7 +235,7 @@ const Home = () => {
               {m.home.footerEmail}
             </a>
             <a
-              href="/resume.pdf"
+              href={resumePath}
               download
               className="hover:text-app-text transition-colors"
             >
